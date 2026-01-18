@@ -1,46 +1,302 @@
 /* ===============================
    GLOBAL RESET & VARIABLES
 ================================ */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-:root { --primary: #ff4d00; --dark: #111; --white: #fff; }
+:root {
+    --background-color:#ffffff;
+    --text-color:#50347f;
+    --text-hover:#8b87b5;
+    --text-primary:#3c9bbd;
 
-body { background: #f4f6f8; overflow-x: hidden; }
+
+    --primary-color: #4a90e2;
+
+    --bg-gradient: linear-gradient(90deg, #e6e1ff, #e9f7f1);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+}
+
+body {
+    background-color: #ffffff;
+    color: #50347f;
+}
 
 /* ===============================
-   NAVBAR
+   NAVBAR CONTAINER
 ================================ */
 .navbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 50px; margin: 20px;
-    background: linear-gradient(90deg, #e6e1ff, #e9f7f1);
-    border-radius: 50px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%; /* Full width */
+    height: 8vh;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 0 5%; /* Horizontal padding */
+    
+    /* Modern Glassmorphism & Color */
+    background: var(--bg-gradient); 
+    backdrop-filter: blur(15px); /* strong blur */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* ADD THIS TO THE TOP OF YOUR CSS */
-html {
-    scroll-behavior: smooth; /* Enables smooth scrolling */
+/* ===============================
+   LOGO
+================================ */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
-/* UPDATE NAV LINK STYLES */
+.logo img {
+    height: 70px;
+    width: auto;
+}
+
+
+/* ===============================
+   NAV LINKS (DESKTOP)
+================================ */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
 .nav-links li a {
     text-decoration: none;
-    color: #222;
-    transition: 0.3s;
-    display: block;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.10rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Animated Underline Effect */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--text-hover);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--text-hover);
+}
+
+.nav-links li a:hover::after {
     width: 100%;
-    height: 100%;
 }
 
-.nav-links li:hover a {
-    color: var(--primary);
+.mobile-btn {
+    display: none; /* Hide duplicate button on desktop */
 }
 
-.logo { font-size: 22px; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 8px; }
-.logo-icon { color: var(--primary); }
-.nav-links { list-style: none; display: flex; gap: 30px; }
-.nav-links li { cursor: pointer; transition: 0.3s; font-weight: 500; }
-.nav-links li:hover { color: var(--primary); }
-.btn-primary { background: var(--primary); color: #fff; border: none; padding: 12px 22px; border-radius: 30px; cursor: pointer; }
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px; /* Slightly squared for modern look */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.fancy-btn {
+  position: relative;
+  padding: 12px 26px;
+  background: var(--text-color);
+  border-radius: 6px;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Corners */
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--text-hover);
+  transition: all 0.45s ease;
+}
+
+/* Fold triangle */
+.corner::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Top-right fold */
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.top-right::after {
+  top: 0;
+  right: 0;
+  border-width: 0 18px 18px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Bottom-left fold */
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-left::after {
+  bottom: 0;
+  left: 0;
+  border-width: 18px 0 0 18px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Hover animation */
+.fancy-btn:hover .top-right {
+  transform: translate(18px, -18px);
+}
+
+.fancy-btn:hover .bottom-left {
+  transform: translate(-18px, 18px);
+}
+
+/* Overlay slide */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #60458e;
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+  z-index: 0;
+}
+
+.fancy-btn:hover .overlay {
+  transform: translateX(0);
+}
+
+/* Text */
+.btn-text {
+  position: relative;
+  color: white;
+  z-index: 1;
+}
+
+
+/* ===============================
+   HAMBURGER MENU
+================================ */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* ===============================
+   RESPONSIVE STYLES (MOBILE)
+================================ */
+@media (max-width: 768px) {
+    .nav-actions {
+        display: none; /* Hide external button */
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 1001; /* Above the menu */
+    }
+
+    /* Hamburger Animation to X */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        position:fixed;
+        top: 0;
+        left: 0; /* Changed from -100% to create slide from top or right */
+        right: 0;
+        height: auto;
+        background: rgb(240, 245, 255); /* Solid color slightly off-white */
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 100px; /* Space for the header */
+        gap: 25px;
+        
+        /* Animation properties */
+        transform: translateY(-150%); /* Hide above screen */
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        transform: translateY(0); /* Slide down */
+    }
+
+    .mobile-btn {
+        display: block; /* Show button inside menu */
+        margin-top: 10px;
+    }
+    
+    .nav-links li a {
+        font-size: 1.2rem; /* Larger text for mobile */
+    }
+}
+
 
 /* ===============================
    HERO SLIDER
@@ -1035,175 +1291,252 @@ body {
 .p-num { font-weight: 600; color: #ccc; cursor: pointer; }
 .p-num.active { color: #111; font-size: 20px; }
 
+
 /* ===============================
-   FOOTER STYLES
+   MODERN FOOTER STYLES
 ================================ */
 
-.custom-footer {
-    position: relative;
-    background-color: #2e003e; /* Deep purple background */
-    color: #fff;
-    font-size: 14px;
-    margin-top: 50px;
+:root {
+    /* Extracted Logo Colors */
+    --logo-peach: #ffbe98;
+    --logo-pink: #e068a0;
+    --logo-purple: #6a4c9c;
+    --logo-blue: #3098d6;
+    
+    /* The "Celestial" Gradient */
+    --celestial-gradient: linear-gradient(90deg, 
+        var(--logo-peach), 
+        var(--logo-pink), 
+        var(--logo-purple), 
+        var(--logo-blue)
+    );
+    
+    --bg-deep: #050507; /* Deepest black/blue */
+    --bg-card: #0f0f14; /* Slightly lighter for contrast */
+    --text-main: #ffffff;
+    --text-muted: #a0a0b0;
 }
 
-/* --- Top Wave Decoration --- */
-.footer-wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.celestial-footer {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    padding-top: 0;
+    position: relative;
+    font-family: 'Poppins', sans-serif; /* Ensure you have a nice font loaded */
     overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
 }
 
-.footer-wave svg {
-    position: relative;
-    display: block;
-    width: calc(150% + 1.3px);
-    height: 60px;
-    transform: rotateY(180deg);
+/* 1. The Glowing Top Line */
+.glow-line {
+    width: 100%;
+    height: 4px;
+    background: var(--celestial-gradient);
+    box-shadow: 0 0 20px rgba(224, 104, 160, 0.5); /* Glowing pink aura */
 }
 
-.footer-wave .shape-fill {
-    fill: #f4f6f8; /* Matches your body background color */
-}
-
-/* --- Footer Container --- */
-.footer-container {
+.footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 40px 40px; /* Top padding clears the wave */
-}
-
-.footer-grid {
+    padding: 60px 20px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr; /* First col wider for newsletter */
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr; /* Layout proportions */
     gap: 40px;
-    margin-bottom: 60px;
 }
 
-.footer-col h4 {
-    font-size: 16px;
-    font-weight: 700;
+/* 2. Logo Section */
+.footer-logo img {
+    height: 90px; /* Adjust based on your actual image size */
+    width: auto;
     margin-bottom: 20px;
-    color: #fff;
+    /* Optional: Brightness boost if the logo is too dark */
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
 }
 
-.footer-col ul {
+.tagline {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Social Orbit Icons */
+.social-orbit {
+    display: flex;
+    gap: 15px;
+}
+
+.orbit-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Circle */
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.orbit-icon:hover {
+    background: transparent;
+    border-color: var(--logo-pink);
+    color: var(--logo-pink);
+    transform: translateY(-5px) rotate(360deg); /* Spin and float effect */
+    box-shadow: 0 0 15px var(--logo-purple);
+}
+
+/* 3. Headings & Links */
+.footer-heading {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    background: var(--celestial-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Text Gradient */
+    font-weight: 700;
+}
+
+.link-list {
     list-style: none;
     padding: 0;
 }
 
-.footer-col ul li {
-    margin-bottom: 10px;
+.link-list li {
+    margin-bottom: 12px;
 }
 
-.footer-col ul li a, 
-.footer-col ul li {
-    color: #e0e0e0;
+.link-list a {
+    color: var(--text-muted);
     text-decoration: none;
-    transition: color 0.3s;
-    line-height: 1.5;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
 }
 
-.footer-col ul li a:hover {
-    color: #ff4d00; /* Your brand orange */
+/* Hover Arrow Effect */
+.link-list a::before {
+    content: '›';
+    margin-right: 8px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.3s;
+    color: var(--logo-blue);
 }
 
-/* --- Newsletter --- */
-.newsletter-col form {
+.link-list a:hover {
+    color: var(--logo-peach); /* Peach hover color */
+    transform: translateX(5px);
+}
+
+.link-list a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 4. Actionable Contact Section */
+.contact-list {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 300px;
-}
-
-.newsletter-col input {
-    padding: 12px 15px;
-    border-radius: 6px;
-    border: none;
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    outline: none;
-}
-
-.newsletter-col button {
-    padding: 12px;
-    border-radius: 6px;
-    border: none;
-    background: #a020f0; /* Pinkish-purple button */
-    background: linear-gradient(to right, #9c27b0, #d63384);
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: transform 0.2s;
-}
-
-.newsletter-col button:hover {
-    transform: scale(1.02);
-}
-
-/* --- Social Icons --- */
-.social-links {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.social-links a {
-    color: #fff;
-    font-size: 20px;
-    transition: transform 0.3s;
-}
-
-.social-links a:hover {
-    transform: translateY(-3px);
-    color: #d63384;
-}
-
-/* --- Bottom Section --- */
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 30px;
-    flex-wrap: wrap;
     gap: 20px;
 }
 
-.trust-text p {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 5px;
-}
-
-.payment-logos {
+.contact-item {
     display: flex;
+    align-items: center;
     gap: 15px;
-    font-size: 28px;
-    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid transparent;
+    transition: 0.3s ease;
 }
 
-/* --- Responsive --- */
-@media (max-width: 992px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
+.contact-item:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--logo-purple);
+    transform: translateX(5px);
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--logo-purple), var(--logo-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-text span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.contact-text strong {
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+/* 5. Footer Bottom */
+.footer-bottom {
+    background: #000;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #666;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-bottom a {
+    color: var(--logo-blue);
+    text-decoration: none;
+}
+
+/* ===============================
+   RESPONSIVE (Mobile)
+================================ */
+@media (max-width: 900px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr; /* 2 columns tablet */
     }
 }
 
 @media (max-width: 600px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
+    .footer-content {
+        grid-template-columns: 1fr; /* 1 column mobile */
+        text-align: center;
+    }
+
+    .social-orbit, .link-list a {
+        justify-content: center;
+    }
+
+    .contact-item {
+        justify-content: flex-start; /* Keep contact items aligned left or center? */
+        text-align: left;
     }
     
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
+    /* Center align contact for cleaner mobile look */
+    .contact-col .contact-item {
+        max-width: 300px;
+        margin: 0 auto;
     }
 }
 

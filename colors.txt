@@ -1,0 +1,5 @@
+purple dark color ( text ) - #50347f
+purple gradient - #8b87b5
+lady blue color - #3c9bbd
+peach color - #eba48b
+dark blue - #455b83
