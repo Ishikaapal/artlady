@@ -337,37 +337,64 @@ if(track) {
 
 
 // service 
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".service-card");
 
-// Function to Open Modal
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('active'); // Add active class to show
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-}
+  // 1. 3D Tilt Effect
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-// Function to Close Modal
-function closeModal(event, modalId) {
-    // If event is null (clicked close btn) OR clicked outside content
-    if (!event || event.target.id === modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-    }
-}
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-// Close on Escape Key
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-        const activeModals = document.querySelectorAll('.modal-overlay.active');
-        activeModals.forEach(modal => {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    }
+      // Calculate rotation (max 10 degrees)
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      // Apply transformation
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    // Reset when mouse leaves
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+    });
+  });
+
+  // 2. Scroll Reveal Animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach((card, index) => {
+    // Initial state for animation
+    card.style.opacity = "0";
+    card.style.transform = "translateY(50px)";
+    card.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease";
+    
+    // Add staggered delay via inline style for the initial reveal
+    // (We remove transition property temporarily in JS to avoid conflict with hover tilt, 
+    // effectively we are just setting initial styles here)
+    setTimeout(() => {
+        card.style.transition = `opacity 0.8s ease-out ${index * 0.1}s, transform 0.8s ease-out ${index * 0.1}s`;
+    }, 0);
+    
+    observer.observe(card);
+  });
 });
 
 /*FOOTER LOGIC */ 
