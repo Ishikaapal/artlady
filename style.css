@@ -7,13 +7,8 @@
     --text-hover:#8b87b5;
     --text-primary:#3c9bbd;
     --boxShadow-color:rgba(44, 14, 83, 0.3);
-
-
-    --primary-color: #4a90e2;
-
     --bg-gradient: linear-gradient(90deg, #e6e1ff, #e9f7f1);
     --glass-bg: rgba(255, 255, 255, 0.85);
-
     
 }
 
@@ -37,7 +32,7 @@ body {
 /* ===============================
    NAVBAR CONTAINER
 ================================ */
-.navbar {
+.ip_navbar {
     position: sticky;
     top: 0;
     left: 0;
@@ -76,13 +71,13 @@ body {
 /* ===============================
    NAV LINKS (DESKTOP)
 ================================ */
-.nav-links {
+.ip_nav_links {
     display: flex;
     list-style: none;
     gap: 32px;
 }
 
-.nav-links li a {
+.ip_nav_links li a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 600;
@@ -92,7 +87,7 @@ body {
 }
 
 /* Animated Underline Effect */
-.nav-links li a::after {
+.ip_nav_links li a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -103,11 +98,11 @@ body {
     transition: width 0.3s ease;
 }
 
-.nav-links li a:hover {
+.ip_nav_links li a:hover {
     color: var(--text-hover);
 }
 
-.nav-links li a:hover::after {
+.ip_nav_links li a:hover::after {
     width: 100%;
 }
 
@@ -317,7 +312,7 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    .nav-links {
+    .ip_nav_links {
         position:fixed;
         top: 0;
         left: 0; /* Changed from -100% to create slide from top or right */
@@ -339,7 +334,7 @@ body {
         z-index: 999;
     }
 
-    .nav-links.active {
+    .ip_nav_links.active {
         transform: translateY(0); /* Slide down */
     }
 
@@ -348,7 +343,7 @@ body {
         margin-top: 10px;
     }
     
-    .nav-links li a {
+    .ip_nav_links li a {
         font-size: 1.2rem; /* Larger text for mobile */
     }
 }
