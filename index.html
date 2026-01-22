@@ -6,6 +6,7 @@
     <title>Art work Lady</title>
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -42,13 +43,13 @@
 
 
       <div class="nav-actions">
-        <button class="Btn">Order Now <i class="fa-solid fa-cart-arrow-down"></i>
-    </button>
+        <button class="ip_order_btn">Order Now <i class="fa-solid fa-cart-arrow-down"></i>
+        </button> 
         <button class="fancy-btn" onclick="openAuth('register')">
           <span class="corner top-right"></span>
           <span class="corner bottom-left"></span>
           <span class="overlay"></span>
-          <span class="btn-text">Get Started</span>
+          <span class="ip_btn_text">Get Started</span>
         </button>
       </div>
 
@@ -67,7 +68,6 @@
 
         <div class="card-left">
           <div class="overlay-content">
-            <h3>Art Work Lady</h3>
             <h1>
               Getting started with Vector Conversion or Embroidery Digitizing is
               simple
@@ -76,9 +76,7 @@
               We’ll take care of the rest—delivering precise, production-ready
               files with our signature speedy turnaround.
             </p>
-            <div class="illustration-placeholder">
-              <div class="circle-placeholder"></div>
-            </div>
+            <img src="assets/logo.png" alt="logo" class="card-left-img" />
           </div>
         </div>
 
@@ -130,11 +128,8 @@
                   <option value="friend">others</option>
                 </select>
               </div>
-              <div class="checkbox-group">
-                <input type="checkbox" id="terms" />
-                <label for="terms">I agree to the <a href="#">terms</a></label>
-              </div>
-              <button type="submit" class="btn-primary">Sign Up</button>
+              
+              <button type="submit">Sign Up</button>
             </form>
             <p class="switch-text">
               Already Have an account?
@@ -152,11 +147,7 @@
               <div class="input-group">
                 <input type="password" placeholder="Password" required />
               </div>
-              <div class="checkbox-group">
-                <input type="checkbox" id="remember" />
-                <label for="remember">Remember me</label>
-              </div>
-              <button type="submit" class="btn-primary">Sign In</button>
+              <button type="submit">Sign In</button>
             </form>
             <p class="switch-text">
               Don't have an account?
@@ -178,21 +169,7 @@
             alt="vector art"
           />
 
-          <div class="hero-overlay"></div>
-
-          <!-- <div class="slide-content centered">
-            <span class="tagline">CREATIVE AGENCY</span>
-            <h1 class="slide-title">
-              Design that <span class="highlight">Speaks</span>
-            </h1>
-            <p class="slide-desc">
-              We craft stunning digital experiences that captivate your
-              audience.
-            </p>
-            <button class="cta-btn">
-              Start Project <i class="fas fa-arrow-right"></i>
-            </button>
-          </div> -->
+                  
         </div>
 
         <div class="hero-slide">
@@ -201,20 +178,7 @@
             class="slide-bg-img"
             alt="Orders Complete"
           />
-          <div class="hero-overlay"></div>
-
-          <!-- <div class="slide-content centered">
-            <span class="tagline">DIGITAL MARKETING</span>
-            <h1 class="slide-title">
-              Grow Your <span class="highlight blue">Business</span>
-            </h1>
-            <p class="slide-desc">
-              Data-driven strategies to boost your reach and ROI.
-            </p>
-            <button class="cta-btn blue-btn">
-              Get Strategy <i class="fas fa-arrow-right"></i>
-            </button>
-          </div> -->
+          
         </div>
 
         <div class="hero-slide">
@@ -223,20 +187,7 @@
             class="slide-bg-img"
             alt="Embroidary"
           />
-          <div class="hero-overlay"></div>
-
-          <!-- <div class="slide-content centered">
-            <span class="tagline">DEVELOPMENT</span>
-            <h1 class="slide-title">
-              Code Built for <span class="highlight pink">Speed</span>
-            </h1>
-            <p class="slide-desc">
-              Robust, scalable, and secure web solutions.
-            </p>
-            <button class="cta-btn pink-btn">
-              View Code <i class="fas fa-arrow-right"></i>
-            </button>
-          </div> -->
+          
         </div>
 
         <div class="hero-slide">
@@ -245,7 +196,7 @@
             class="slide-bg-img"
             alt="Promotion"
           />
-          <div class="hero-overlay"></div>
+          
 
           <!-- <div class="slide-content centered">
             <span class="tagline">DEVELOPMENT</span>
@@ -373,19 +324,19 @@
 
     <!-- services section  -->
 
-  <section class="core-services" id="services">
+  <section class="ip_core-services" id="services">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <div class="container">
-    <div class="services-header">
-      <span class="sub-tag">What We Do</span>
-      <h2>Our Core Services</h2>
-      <p>
-        At <strong>ArtworkLady</strong>, we blend technical precision with creative flair. 
-        Empowering brands with pixel-perfect assets and strategic positioning.
-      </p>
-    </div>
+  <div class="ip_container">
+    <div class="section-header unified-header">
+  
+  <h2>Our Core Services</h2>
+  <p>
+    At <strong>ArtworkLady</strong>, we blend technical precision with creative flair. 
+    Empowering brands with pixel-perfect assets and strategic positioning.
+  </p>
+</div>
 
     <div class="services-grid">
       <div class="service-card" data-step="01">
@@ -445,22 +396,19 @@
   </div>
 </section>
 
-    
-
-    
-
-    
     <!-- why us section  -->
     <section class="why-us-section" id="whyUs">
-      <div class="section-header">
+      <div class="section-header unified-header">
         <h2>Why Choose Us</h2>
-        <div class="underline"></div>
+        <p>
+          Trusted globally for speed, creativity, and precision-driven design excellence.
+        </p>
       </div>
       <div class="container">
         <div class="column">
           <div class="feature-item item-1">
             <div class="icon-circle">
-              <i class="fas fa-globe"></i>
+              <i class="fa-solid fa-globe"></i>
             </div>
             <h3>Global Partnerships</h3>
             <p>
