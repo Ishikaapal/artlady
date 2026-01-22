@@ -342,147 +342,88 @@ section{
    HERO SLIDER
 ================================ */
 
-
-/* 1. Global Reset & Container */
 .hero-slider-section {
     position: relative;
     width: 100%;
-    /* Use dvh (Dynamic Viewport Height) for better mobile support, 
-       fallback to vh for older browsers */
-    height: 92dvh; 
-    height: 92vh; 
+    height: 92vh;
+    min-height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    background: #000;
-    margin: 0;
-    padding: 0;
+    background: #f4f4f4;
 }
 
+/* Centered slider box */
 .slider-container {
-    width: 100%;
-    height: 100%;
     position: relative;
+    width: 80%;
+    max-width: 1000px;
+    height: 80%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-/* 2. Slide Logic (Visibility & Transition) */
+/* Slides */
 .hero-slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0;
-    visibility: hidden;
+    transform: scale(1.1);
+    transition: opacity 0.8s ease, transform 1.2s ease;
     z-index: 1;
-    /* Smooth crossfade transition */
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 1s;
 }
 
 .hero-slide.active {
     opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-/* 3. Image Styling & Ken Burns Effect */
-.slide-bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 8px;
-    /* This ensures the image covers the area without stretching */
-    object-fit: cover; 
-    object-position: center; 
-    z-index: 1;
-    
-    /* Animation State: Start slightly zoomed out or normal */
     transform: scale(1);
-    transition: transform 8s ease-out; /* Slower, more cinematic zoom */
-    will-change: transform; /* Optimizes performance */
+    z-index: 2;
 }
 
-/* Active Zoom Effect */
-.hero-slide.active .slide-bg-img {
-    transform: scale(1.05); /* Gentle zoom in when active */
-}
-
-/* 4. Subtle Overlay (Optional but recommended for nav visibility) */
-/* Since you have no text, we just add a very light gradient at the bottom 
-   so the navigation dots/arrows are always visible */
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.slide-image-wrapper {
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        to bottom, 
-        rgba(0,0,0,0) 70%, 
-        rgba(0,0,0,0.4) 100%
-    );
-    z-index: 2;
-    pointer-events: none; /* Allows clicking through if needed */
 }
 
-/* 5. Navigation Controls (Modern Glass Style) */
+.slide-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Controls */
 .slider-controls {
     position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    inset: 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
+    padding: 0 1.2rem;
     z-index: 10;
-    /* Glassmorphism Container */
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: none;
 }
 
-/* Arrows */
 .nav-btn {
-    background: transparent;
+    pointer-events: auto;
+    background: white;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 1.2rem;
-    padding: 5px;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .nav-btn:hover {
+    background: var(--text-hover, #60458e);
     color: #fff;
-    transform: scale(1.2);
 }
 
-/* Dots */
-.slide-indicators {
-    display: flex;
-    gap: 10px;
-}
 
-.slide-indicators .dot {
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.slide-indicators .dot.active {
-    background: #fff;
-    transform: scale(1.3);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
 
 
 
@@ -743,7 +684,8 @@ section{
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: var(--blob-1);
+    background: var(--text-color);
+    opacity: 0.4;
     top: -10%;
     left: -10%;
 }
@@ -751,7 +693,7 @@ section{
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: var(--blob-2);
+    background: var(--text-hover);
     bottom: -10%;
     right: -5%;
     animation-delay: -5s;
@@ -1128,15 +1070,16 @@ section{
    PORTFOLIO SECTION (FIXED GAP)
 ================================ */
 .portfolio-section {
-    padding: 80px 0;
+    padding: var(--container-padding);
     background: var(--bg-gradient);
     overflow: hidden; /* Hide overflow from container */
     position: relative;
     max-width: 100%;
+    
 }
 
-.portfolio-header { text-align: center; margin-bottom: 50px; }
-.portfolio-header h2 { font-size: 42px; font-weight: 800; }
+.portfolio-header { text-align: center; margin-bottom: 50px;  }
+.portfolio-header h2 { font-size: 42px; font-weight: 800; color:linear-gradient(45deg, var(--text-color), var(--text-primary)); }
 
 .portfolio-slider {
     width: 100%;

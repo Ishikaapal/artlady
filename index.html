@@ -160,73 +160,52 @@
 
     <!-- hero section  -->
 
-    <section class="hero-slider-section" id="home">
-      <div class="slider-container">
-        <div class="hero-slide active">
-          <img
-            src="assets/1.jpeg"
-            class="slide-bg-img"
-            alt="vector art"
-          />
+    <section class="hero-slider-section" id="home" aria-label="Hero Image Slider">
+  <div class="slider-container">
+    
+    <div class="hero-slide active">
+      <div class="slide-image-wrapper">
+        <img src="assets/1.png" class="slide-bg-img" alt="Abstract vector art background" loading="eager" />        
+      </div>      
+    </div>
 
-                  
-        </div>
+    <div class="hero-slide">
+      <div class="slide-image-wrapper">
+        <img src="assets/2.png" class="slide-bg-img" alt="Completed packaging orders" loading="lazy" />     
+      </div>      
+    </div>
 
-        <div class="hero-slide">
-          <img
-            src="assets/2.jpeg"
-            class="slide-bg-img"
-            alt="Orders Complete"
-          />
-          
-        </div>
+    <div class="hero-slide">
+      <div class="slide-image-wrapper">
+        <img src="assets/3.png" class="slide-bg-img" alt="Detailed embroidery work" loading="lazy" />       
+      </div>      
+    </div>
 
-        <div class="hero-slide">
-          <img
-            src="assets/3.jpeg"
-            class="slide-bg-img"
-            alt="Embroidary"
-          />
-          
-        </div>
+    <div class="hero-slide">
+      <div class="slide-image-wrapper">
+        <img src="assets/4.png" class="slide-bg-img" alt="Promotional marketing materials" loading="lazy" />      
+      </div>      
+    </div>
 
-        <div class="hero-slide">
-          <img
-            src="assets/4.jpeg"
-            class="slide-bg-img"
-            alt="Promotion"
-          />
-          
+    <div class="hero-slide">
+      <div class="slide-image-wrapper">
+        <img src="assets/5.png" class="slide-bg-img" alt="Promotional marketing materials" loading="lazy" />      
+      </div>      
+    </div>
 
-          <!-- <div class="slide-content centered">
-            <span class="tagline">DEVELOPMENT</span>
-            <h1 class="slide-title">
-              Code Built for <span class="highlight pink">Speed</span>
-            </h1>
-            <p class="slide-desc">
-              Robust, scalable, and secure web solutions.
-            </p>
-            <button class="cta-btn pink-btn">
-              View Code <i class="fas fa-arrow-right"></i>
-            </button>
-          </div> -->
-        </div>
+  </div>
+
+  <div class="slider-controls">
+    <button class="nav-btn prev" aria-label="Previous Slide">
+      &#10094; 
+    </button>
+    <div class="slide-indicators">
       </div>
-
-      <div class="slider-controls">
-        <button class="nav-btn prev" onclick="changeSlide(-1)">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="slide-indicators">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-        </div>
-        <button class="nav-btn next" onclick="changeSlide(1)">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-    </section>
+    <button class="nav-btn next" aria-label="Next Slide">
+      &#10095;
+    </button>
+  </div>
+</section>
 
     <!-- about us section  -->
 
@@ -464,11 +443,11 @@
     <!-- portfolio section  -->
 
     <section class="portfolio-section" id="portfolio">
-      <div class="portfolio-header">
-        <h2>
-          We Create. We Execute. We Deliver.
-        </h2>
+      
+      <div class="section-header unified-header">
+        <h2 style="font-size: 38px;">We Create. We Execute. We Deliver.</h2>
       </div>
+      
       <div class="portfolio-slider">
         <div class="slider-track" id="sliderTrack">
           <div class="portfolio-slide" data-index="0">

@@ -1,504 +1,238 @@
-/* ===============================
-   1. GLOBAL PAGE LOAD
-================================ */
-window.addEventListener("load", () => {
-    const heroContent = document.querySelector(".hero-content");
-    if(heroContent) heroContent.classList.add("show");
+/* =====================================================
+   1. GLOBAL INIT & NAVBAR (RESPONSIVE SAFE)
+===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* HERO FADE-IN */
+  const heroContent = document.querySelector(".hero-content");
+  heroContent?.classList.add("show");
+
+  /* NAVBAR LOGIC */
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".ip_nav_links");
+  const navItems = document.querySelectorAll(".ip_nav_links a");
+
+  hamburger?.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navLinks?.classList.toggle("active");
+    document.body.classList.toggle("no-scroll");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      hamburger?.classList.remove("active");
+      navLinks?.classList.remove("active");
+      document.body.classList.remove("no-scroll");
+    });
+  });
+
+  /* FOOTER YEAR */
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+  /* PORTFOLIO INIT */
+  if (document.getElementById("sliderTrack")) {
+    setupPortfolio();
+    startPortfolioLoop();
+  }
 });
 
-/* Navbar logic */
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links li');
-
-    // Toggle Menu on Click
-    hamburger.addEventListener('click', () => {
-        // Toggle the .active class on the menu and the hamburger icon
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked (optional but recommended for single page apps)
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
-});
-
-// Mock function for your button
-function openAuth(type) {
-    console.log("Open " + type + " modal");
-    alert("Open " + type + " modal");
-}
-
-
-/* ===============================
-   2. WHY CHOOSE US
-================================ */
-const listItems = document.querySelectorAll('.feature-item');
-const images = document.querySelectorAll('.feature-image');
-
-function changeImage(index) {
-    listItems.forEach(item => item.classList.remove('active'));
-    images.forEach(img => img.classList.remove('active'));
-    if(listItems[index]) listItems[index].classList.add('active');
-    if(images[index]) images[index].classList.add('active');
-}       
-
-/* ===============================
-   3. HERO SLIDER
-================================ */
-const heroSlides = document.querySelectorAll('.hero-slide');
-const heroDots = document.querySelectorAll('.dot');
-let currentHeroSlide = 0;
+/* =====================================================
+   2. HERO SLIDER (AUTO + MANUAL)
+===================================================== */
+const slides = document.querySelectorAll(".hero-slide");
+const nextBtn = document.querySelector(".nav-btn.next");
+const prevBtn = document.querySelector(".nav-btn.prev");
+let heroIndex = 0;
 let heroInterval;
 
 function showHeroSlide(index) {
-    if (heroSlides.length === 0) return;
-    heroSlides.forEach(s => s.classList.remove('active'));
-    heroDots.forEach(d => d.classList.remove('active'));
-
-    if (index >= heroSlides.length) currentHeroSlide = 0;
-    else if (index < 0) currentHeroSlide = heroSlides.length - 1;
-    else currentHeroSlide = index;
-
-    heroSlides[currentHeroSlide].classList.add('active');
-    if(heroDots.length > 0) heroDots[currentHeroSlide].classList.add('active');
+  slides.forEach(s => s.classList.remove("active"));
+  heroIndex = (index + slides.length) % slides.length;
+  slides[heroIndex]?.classList.add("active");
 }
 
-function startHeroAutoPlay() {
-    clearInterval(heroInterval);
-    heroInterval = setInterval(() => { showHeroSlide(currentHeroSlide + 1); }, 5000);
-}
-function changeSlide(dir) { clearInterval(heroInterval); showHeroSlide(currentHeroSlide + dir); startHeroAutoPlay(); }
-function goToSlide(idx) { clearInterval(heroInterval); showHeroSlide(idx); startHeroAutoPlay(); }
-
-if(heroSlides.length > 0) startHeroAutoPlay();
-
-
-function switchAboutImage(index) {
-    // 1. Get all list items and images
-    const listItems = document.querySelectorAll('.best-item');
-    const images = document.querySelectorAll('.about-img');
-
-    // 2. Remove 'active' class from all
-    listItems.forEach(item => item.classList.remove('active'));
-    images.forEach(img => img.classList.remove('active'));
-
-    // 3. Add 'active' class to the hovered index
-    if(listItems[index]) listItems[index].classList.add('active');
-    if(images[index]) images[index].classList.add('active');
+function startHeroSlider() {
+  clearInterval(heroInterval);
+  heroInterval = setInterval(() => showHeroSlide(++heroIndex), 4000);
 }
 
-// / * ==============
-// | why choose us section |
-// =========================
-document.addEventListener("DOMContentLoaded", function() {
-    // Configuration for the Intersection Observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger animation when 20% of section is visible
-    };
+nextBtn?.addEventListener("click", () => showHeroSlide(++heroIndex));
+prevBtn?.addEventListener("click", () => showHeroSlide(--heroIndex));
 
-    // Create the observer
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                
-                // 1. Animate the Center Image first
-                const center = entry.target.querySelector('.center-visual');
-                if(center) center.classList.add('visible');
+slides.length && startHeroSlider();
 
-                // 2. Animate the surrounding items with a staggered delay
-                const items = entry.target.querySelectorAll('.feature-item');
-                items.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, index * 200); // 200ms delay between each item
-                });
-
-                // Stop observing after animation runs once
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Start observing the section
-    const section = document.querySelector('.why-us-section');
-    if(section) {
-        observer.observe(section);
-    }
+/* Pause hero slider when tab hidden */
+document.addEventListener("visibilitychange", () => {
+  document.hidden ? clearInterval(heroInterval) : startHeroSlider();
 });
-/* ===============================
-   EXPANDING CARDS LOGIC (FLIP Animation)
-================================ */
 
-function toggleCard(card) {
-    // 1. Check if card is already active
-    const isActive = card.classList.contains('active');
-    
-    // 2. If clicking an active card, close it
-    if (isActive) {
-        card.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Enable Scroll
-        return;
-    }
+/* =====================================================
+   3. WHY CHOOSE US – SCROLL REVEAL
+===================================================== */
+const whyUsSection = document.querySelector(".why-us-section");
 
-    // 3. If opening a new card...
-    
-    // First, close any other open cards
-    document.querySelectorAll('.expand-card.active').forEach(c => {
-        c.classList.remove('active');
+if (whyUsSection) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.querySelector(".center-visual")?.classList.add("visible");
+
+      entry.target.querySelectorAll(".feature-item").forEach((item, i) => {
+        setTimeout(() => item.classList.add("visible"), i * 180);
+      });
+
+      observer.unobserve(entry.target);
     });
+  }, { threshold: 0.25 });
 
-    // Get the initial position (First)
-    const rect = card.getBoundingClientRect();
-    
-    // Add the active class to calculate final position (Last)
-    card.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Disable Scroll
-
-    // NOTE: In a pure FLIP animation, we would calculate the invert and play.
-    // However, for this specific CSS setup, adding the class triggers the 
-    // fixed position transition defined in CSS. 
-    
-    // To make it smooth, we use a small timeout or a placeholder technique,
-    // but the CSS transition on '.card-inner' handles the growth visually.
-    
-    // Optional: Add a simple animation to the content appearing
-    const content = card.querySelector('.full-desc');
-    content.style.opacity = '0';
-    setTimeout(() => {
-        content.style.opacity = '1';
-    }, 300);
+  observer.observe(whyUsSection);
 }
 
+/* =====================================================
+   4. PORTFOLIO SLIDER (RESPONSIVE + INFINITE)
+===================================================== */
+const track = document.getElementById("sliderTrack");
+const originalSlides = [...document.querySelectorAll(".portfolio-slide")];
+const pNumbers = document.querySelectorAll(".p-num");
+const progressFill = document.querySelector(".progress-fill");
 
-/* ===============================
-   4. PORTFOLIO SLIDER (BIDIRECTIONAL LOOP)
-================================ */
-const track = document.getElementById('sliderTrack');
-const originalSlides = Array.from(document.querySelectorAll('.portfolio-slide'));
-const pNumbers = document.querySelectorAll('.p-num');
-const progressFill = document.querySelector('.progress-fill');
-
-// CONFIG
-const slideWidth = 350; // Match CSS width
-const gap = 30;         // Match CSS gap
-const totalItemWidth = slideWidth + gap;
-const animationSpeed = 3000;
-
-// STATE
-let currentIndex = 0;
+let slideWidth = 350;
+const gap = 30;
+let portfolioIndex = 0;
 let portfolioInterval;
-let isTransitioning = false;
-const clonesCount = originalSlides.length; // We will clone ALL slides to front and back
+const speed = 3000;
 
 function setupPortfolio() {
-    // 1. Clear Track (but keep references in originalSlides array)
-    track.innerHTML = '';
+  if (!track) return;
 
-    // 2. Prepend Clones (Clones of the end go to the start)
-    // Actually, to make logic simple: Clone ALL slides and put them at the start
-    originalSlides.forEach(slide => {
-        const clone = slide.cloneNode(true);
-        clone.classList.add('clone');
-        clone.classList.remove('active');
-        track.appendChild(clone);
-    });
+  track.innerHTML = "";
+  const slides = [...originalSlides, ...originalSlides, ...originalSlides];
 
-    // 3. Add Originals
-    originalSlides.forEach(slide => {
-        track.appendChild(slide);
-    });
-
-    // 4. Append Clones (Clones of start go to the end)
-    originalSlides.forEach(slide => {
-        const clone = slide.cloneNode(true);
-        clone.classList.add('clone');
-        clone.classList.remove('active');
-        track.appendChild(clone);
-    });
-
-    // 5. Initialize
-    // We start at 'clonesCount'. 
-    // Example: If 6 items. 0-5 are clones. 6 is the first Real item.
-    currentIndex = clonesCount; 
-    updateTrackPosition(currentIndex, false);
-}
-
-function updateTrackPosition(index, animate = true) {
-    const allSlides = document.querySelectorAll('.portfolio-slide');
-    
-    // A. Highlight Visuals
-    allSlides.forEach(s => s.classList.remove('active'));
-    // The active slide is the one at 'index'
-    if(allSlides[index]) allSlides[index].classList.add('active');
-
-    // B. Map to Original Index (0 to 5)
-    // If index is 6 (first real), mapped is 0.
-    // Logic: (index - clonesCount) % originalSlides.length
-    // But we need to handle negative modulo JS quirk if needed (though here we stay positive usually)
-    let realIndex = (index - clonesCount) % originalSlides.length;
-    if (realIndex < 0) realIndex += originalSlides.length;
-
-    // C. Update Pagination
-    pNumbers.forEach(n => n.classList.remove('active'));
-    if(pNumbers[realIndex]) pNumbers[realIndex].classList.add('active');
-
-    // D. Update Progress
-    if(progressFill) {
-        const percent = ((realIndex + 1) / originalSlides.length) * 100;
-        progressFill.style.width = `${percent}%`;
+  slides.forEach((slide, i) => {
+    const clone = slide.cloneNode(true);
+    if (i < originalSlides.length || i >= originalSlides.length * 2) {
+      clone.classList.add("clone");
     }
+    track.appendChild(clone);
+  });
 
-    // E. Center Logic
-    const containerWidth = document.querySelector('.portfolio-slider').offsetWidth;
-    const centerPoint = containerWidth / 2;
-    const slideCenter = slideWidth / 2;
-    // Shift: Center - SlideCenter - (Position of this slide)
-    const offset = centerPoint - slideCenter - (index * totalItemWidth);
-
-    if (animate) track.style.transition = 'transform 0.5s ease';
-    else track.style.transition = 'none';
-
-    track.style.transform = `translateX(${offset}px)`;
-    currentIndex = index;
+  portfolioIndex = originalSlides.length;
+  updatePortfolio(portfolioIndex, false);
 }
 
-// NEXT SLIDE
-function nextPortfolioSlide() {
-    if (isTransitioning) return;
-    
-    const maxIndex = clonesCount + originalSlides.length + clonesCount - 1; // Last clone index
+function updatePortfolio(index, animate = true) {
+  const slides = track.querySelectorAll(".portfolio-slide");
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index]?.classList.add("active");
 
-    // Move forward
-    currentIndex++;
-    updateTrackPosition(currentIndex, true);
+  const realIndex =
+    (index - originalSlides.length + originalSlides.length) %
+    originalSlides.length;
 
-    // CHECK BOUNDARY (Loop back to start of originals)
-    track.addEventListener('transitionend', () => {
-        // If we reached the start of the appended clones set
-        // (Index = clonesCount + originalSlides.length)
-        if (currentIndex >= clonesCount + originalSlides.length) {
-            // Jump back to the start of Real slides
-            const diff = currentIndex - (clonesCount + originalSlides.length);
-            currentIndex = clonesCount + diff; 
-            updateTrackPosition(currentIndex, false); // No animation jump
-        }
-    }, { once: true });
+  pNumbers.forEach(n => n.classList.remove("active"));
+  pNumbers[realIndex]?.classList.add("active");
+
+  if (progressFill) {
+    progressFill.style.width = `${((realIndex + 1) / originalSlides.length) * 100}%`;
+  }
+
+  const container = document.querySelector(".portfolio-slider");
+  if (!container) return;
+
+  const offset =
+    container.offsetWidth / 2 -
+    slideWidth / 2 -
+    index * (slideWidth + gap);
+
+  track.style.transition = animate ? "transform 0.5s ease" : "none";
+  track.style.transform = `translateX(${offset}px)`;
+
+  portfolioIndex = index;
 }
 
-// PREV SLIDE (Optional functionality, good for robustness)
-function prevPortfolioSlide() {
-    currentIndex--;
-    updateTrackPosition(currentIndex, true);
-    
-    track.addEventListener('transitionend', () => {
-        if (currentIndex < clonesCount) {
-            // Jump to end of Real slides
-            // e.g., if we are at index 5 (last pre-clone), we want to go to index 11 (last real)
-            currentIndex = clonesCount + originalSlides.length - 1;
-            updateTrackPosition(currentIndex, false);
-        }
-    }, { once: true });
+function nextPortfolio() {
+  portfolioIndex++;
+  updatePortfolio(portfolioIndex);
+
+  track.addEventListener(
+    "transitionend",
+    () => {
+      if (portfolioIndex >= originalSlides.length * 2) {
+        portfolioIndex = originalSlides.length;
+        updatePortfolio(portfolioIndex, false);
+      }
+    },
+    { once: true }
+  );
 }
 
-// AUTO PLAY
 function startPortfolioLoop() {
-    clearInterval(portfolioInterval);
-    portfolioInterval = setInterval(nextPortfolioSlide, animationSpeed);
+  clearInterval(portfolioInterval);
+  portfolioInterval = setInterval(nextPortfolio, speed);
 }
 
-// PAGINATION CLICK
-pNumbers.forEach((num, idx) => {
-    num.addEventListener('click', () => {
-        clearInterval(portfolioInterval);
-        // Map click (0-5) to Real Index (6-11)
-        currentIndex = clonesCount + idx;
-        updateTrackPosition(currentIndex, true);
-        startPortfolioLoop();
-    });
+/* Pause on hover */
+track?.addEventListener("mouseenter", () => clearInterval(portfolioInterval));
+track?.addEventListener("mouseleave", startPortfolioLoop);
+
+/* Resize fix */
+window.addEventListener("resize", () =>
+  updatePortfolio(portfolioIndex, false)
+);
+
+/* =====================================================
+   5. AUTH MODAL (MOBILE SAFE)
+===================================================== */
+function openAuth(type) {
+  const overlay = document.getElementById("auth-overlay");
+  const login = document.getElementById("login-section");
+  const register = document.getElementById("register-section");
+
+  if (!overlay) return;
+
+  overlay.style.display = "flex";
+  setTimeout(() => overlay.classList.add("active"), 10);
+
+  login.style.display = type === "login" ? "block" : "none";
+  register.style.display = type === "register" ? "block" : "none";
+}
+
+function closeAuth() {
+  const overlay = document.getElementById("auth-overlay");
+  overlay?.classList.remove("active");
+  setTimeout(() => overlay && (overlay.style.display = "none"), 300);
+}
+
+document.getElementById("auth-overlay")?.addEventListener("click", e => {
+  if (e.target.id === "auth-overlay") closeAuth();
 });
 
-// INITIALIZE
-if(track) {
-    setupPortfolio();
-    startPortfolioLoop();
-    window.addEventListener('resize', () => {
-        // Recalculate center on resize
-        updateTrackPosition(currentIndex, false);
-    });
-}
-
-
-// service 
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".service-card");
-
-  // 1. 3D Tilt Effect
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
+/* =====================================================
+   6. SERVICE CARDS – 3D TILT (DESKTOP ONLY)
+===================================================== */
+if (!("ontouchstart" in window)) {
+  document.querySelectorAll(".service-card").forEach(card => {
+    card.addEventListener("mousemove", e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      const rotateX = ((y / rect.height) - 0.5) * -12;
+      const rotateY = ((x / rect.width) - 0.5) * 12;
 
-      // Calculate rotation (max 10 degrees)
-      const rotateX = ((y - centerY) / centerY) * -10;
-      const rotateY = ((x - centerX) / centerX) * 10;
-
-      // Apply transformation
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.transform = `
+        perspective(1000px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        scale(1.03)
+      `;
     });
 
-    // Reset when mouse leaves
     card.addEventListener("mouseleave", () => {
-      card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+      card.style.transform =
+        "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
     });
   });
-
-  // 2. Scroll Reveal Animation
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  cards.forEach((card, index) => {
-    // Initial state for animation
-    card.style.opacity = "0";
-    card.style.transform = "translateY(50px)";
-    card.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease";
-    
-    // Add staggered delay via inline style for the initial reveal
-    // (We remove transition property temporarily in JS to avoid conflict with hover tilt, 
-    // effectively we are just setting initial styles here)
-    setTimeout(() => {
-        card.style.transition = `opacity 0.8s ease-out ${index * 0.1}s, transform 0.8s ease-out ${index * 0.1}s`;
-    }, 0);
-    
-    observer.observe(card);
-  });
-});
-
-/*FOOTER LOGIC */ 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Dynamic Year
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
-
-    // 2. Active Link Highlighting (Optional for footer)
-    // This highlights the footer link if the current URL matches the link href
-    const footerLinks = document.querySelectorAll('.footer-links a');
-    const currentPath = window.location.pathname;
-    const currentHash = window.location.hash;
-
-    footerLinks.forEach(link => {
-        // Check if link matches current page or hash
-        if (link.getAttribute('href') === currentPath || link.getAttribute('href') === currentHash) {
-            link.style.color = '#4a90e2'; // Set active color directly
-            link.style.fontWeight = 'bold';
-        }
-    });
-
-    // 3. Smooth Scroll for footer anchor links
-    footerLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            
-            // Only scroll if it's a hash link on the same page (e.g., #home)
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetSection = document.getElementById(targetId);
-
-                if (targetSection) {
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 80, // Offset for sticky navbar
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-});
-
-// ====================
-// Register and Login 
-// ====================
-
-// OPEN MODAL FUNCTION
-function openAuth(type) {
-    const overlay = document.getElementById('auth-overlay');
-    const registerSection = document.getElementById('register-section');
-    const loginSection = document.getElementById('login-section');
-
-    // Show Overlay
-    overlay.style.display = 'flex';
-    // Small timeout to allow CSS transition to detect 'flex' before opacity change
-    setTimeout(() => {
-        overlay.classList.add('active');
-    }, 10);
-
-    // Toggle correct section based on button clicked
-    if (type === 'login') {
-        registerSection.style.display = 'none';
-        loginSection.style.display = 'block';
-    } else {
-        loginSection.style.display = 'none';
-        registerSection.style.display = 'block';
-    }
 }
-
-// CLOSE MODAL FUNCTION
-function closeAuth() {
-    const overlay = document.getElementById('auth-overlay');
-    
-    overlay.classList.remove('active');
-    
-    // Wait for transition to finish before hiding
-    setTimeout(() => {
-        overlay.style.display = 'none';
-    }, 300);
-}
-
-// SWITCH FORM INSIDE MODAL
-function switchForm(formName) {
-    const registerSection = document.getElementById('register-section');
-    const loginSection = document.getElementById('login-section');
-
-    if (formName === 'login') {
-        registerSection.style.display = 'none';
-        loginSection.style.display = 'block';
-    } else {
-        loginSection.style.display = 'none';
-        registerSection.style.display = 'block';
-    }
-}
-
-// Close modal if user clicks outside the card
-document.getElementById('auth-overlay').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeAuth();
-    }
-});
