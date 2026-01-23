@@ -13,8 +13,8 @@
 
   /* ---------- NAVBAR ---------- */
   .ip_navbar {
-    height: 70px;
-    padding: 0 20px;
+    height: 8vh;
+    padding: 0 16px;
   }
 
   .logo img {
@@ -23,19 +23,26 @@
 
   .ip_nav_links {
     position: fixed;
-    top: 70px;
+    top: 8vh;
     left: -100%;
-    width: 100%;
-    height: calc(100vh - 70px);
+    width: 70%;
+    height: calc(100vh - 8vh);
     background: var(--bg-gradient);
+    padding-top: 5%;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
     transition: left 0.4s ease;
     z-index: 999;
+    padding-left: 5%;
   }
-
+  .ip_nav_links li a{
+    font-size: 24px;
+  }
+  .ip_nav_links li a::before{
+    display: block;
+  }
   .ip_nav_links.active {
     left: 0;
   }
@@ -46,6 +53,11 @@
 
   .hamburger {
     display: block;
+  }
+  .mobile-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
 
   
@@ -174,8 +186,10 @@
     width: 95%;
     border-radius: 20px;
   }
-
-  .card-left, 
+  .card-left{
+    display: none;
+  }
+ 
   .card-right {
     width: 100%;
     padding: 25px;
@@ -284,12 +298,24 @@
 
   /* ---------- PORTFOLIO ---------- */
   .portfolio-slide {
-    flex: 0 0 300px;
-    height: 420px;
+    /* Use a fixed width that fits mobile screens well */
+    flex: 0 0 280px; 
+    height: 400px;
+  }
+
+  /* Reduce gap for mobile to keep more of the side slides visible */
+  .slider-track {
+    gap: 15px; 
   }
 
   .portfolio-controls {
     padding: 0 5%;
+    flex-direction: column; /* Stack progress bar and numbers if needed */
+    gap: 15px;
+  }
+  
+  .progress-bar {
+    width: 100%;
   }
 
   /* ---------- FOOTER ---------- */

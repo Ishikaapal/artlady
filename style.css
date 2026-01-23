@@ -105,6 +105,13 @@ section{
     display: flex;
     align-items: center;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.logo:hover{
+    transform: scale(1.05);
+}
+.logo:active{
+    transform: scale(0.95);
 }
 
 .logo img {
@@ -119,7 +126,7 @@ section{
 .ip_nav_links {
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 24px;
 }
 
 .ip_nav_links li a {
@@ -130,7 +137,6 @@ section{
     position: relative;
     transition: color 0.3s ease;
 }
-
 /* Animated Underline Effect */
 .ip_nav_links li a::after {
     content: '';
@@ -161,161 +167,86 @@ section{
 
 .nav-actions{
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 
-
-.ip_order_btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 140px;
-  height: 40px;
-  border: none;
-  padding: 0px 20px;
-  background-color: var(--text-color);
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px var(--boxShadow-color);
-  transition-duration: .3s;
-  gap: 8px;
-}
-
-.i{
-  width: 12px;
-  position: absolute;
-  right: 0;
-  margin-right: 20px;
-  fill: white;
-  transition-duration: .3s;
-}
-
-.ip_order_btn:hover {
-  color: var(--text-color);
-  background-color: transparent;
-  border: 1px solid var(--text-color);
-}
-
-.ip_order_btn:hover i {
-  right: 43%;
-  margin: 0;
-  padding: 0;
-  border: none;
-  transition-duration: .3s;
-}
-
-.ip_order_btn:active {
-  transform: translate(3px , 3px);
-  transition-duration: .3s;
-  box-shadow: 2px 2px 0px rgb(140, 32, 212);
-}
-
-.btn-primary {
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 4px; /* Slightly squared for modern look */
+/* Base styles for both */
+.nav-actions a, 
+.nav-actions button {
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+    transition: all 0.4s ease;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: transform 0.2s, background 0.2s;
+    font-size: 1rem;
 }
 
-.btn-primary:hover {
-    background: #357abd;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+/* --- Anchor Tag: Empty -> Fills on Hover --- */
+.nav-actions a {
+    background-color: transparent;
+    color: var(--text-color);
 }
 
-.fancy-btn {
-  position: relative;
-  padding: 12px 26px;
-  background: var(--text-color);
-  border-radius: 6px;
-  border: none;
-  overflow: hidden;
-  cursor: pointer;
-  font-weight: 500;
+.nav-actions a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--text-color);
+    transition: all 0.4s ease;
+    z-index: -1;
 }
 
-/* Corners */
-.corner {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: var(--text-hover);
-  transition: all 0.45s ease;
+.nav-actions a:hover::before {
+    left: 0;
 }
 
-/* Fold triangle */
-.corner::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
+.nav-actions a:hover {
+    color: var(--background-color);
+    transform: scale(1.05);
 }
 
-/* Top-right fold */
-.top-right {
-  top: 0;
-  right: 0;
+/* --- Button: Filled -> Becomes Ghost on Hover --- */
+.nav-actions button {
+    background-color: var(--text-color); /* Starts filled */
+    color: var(--background-color);    /* Text starts inverted */
 }
 
-.top-right::after {
-  top: 0;
-  right: 0;
-  border-width: 0 18px 18px 0;
-  border-color: transparent white transparent transparent;
+/* We use the pseudo-element to "cover" the background with the page color */
+.nav-actions button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color); /* Matches page background */
+    transition: all 0.4s ease;
+    z-index: -1;
 }
 
-/* Bottom-left fold */
-.bottom-left {
-  bottom: 0;
-  left: 0;
+.nav-actions button:hover::before {
+    left: 0;
 }
 
-.bottom-left::after {
-  bottom: 0;
-  left: 0;
-  border-width: 18px 0 0 18px;
-  border-color: transparent transparent transparent white;
+.nav-actions button:hover {
+    color: var(--text-color); /* Text returns to normal */
+    transform: scale(1.05);
 }
 
-/* Hover animation */
-.fancy-btn:hover .top-right {
-  transform: translate(18px, -18px);
+/* --- Global Tap Effect --- */
+.nav-actions a:active, 
+.nav-actions button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
 }
-
-.fancy-btn:hover .bottom-left {
-  transform: translate(-18px, 18px);
-}
-
-/* Overlay slide */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: #60458e;
-  transform: translateX(-100%);
-  transition: transform 0.45s ease;
-  z-index: 0;
-}
-
-.fancy-btn:hover .overlay {
-  transform: translateX(0);
-}
-
-/* Text */
-.ip_btn_text {
-  position: relative;
-  color: white;
-  z-index: 1;
-}
-
 
 /* ===============================
    HAMBURGER MENU
@@ -333,6 +264,24 @@ section{
     background-color: var(--text-color);
     transition: all 0.3s ease-in-out;
     border-radius: 2px;
+}
+/* Ensure the hamburger spans animate */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slides middle bar out */
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Base bars need transition to look smooth */
+.bar {
+    transition: all 0.3s ease-in-out;
 }
 
 
@@ -1055,7 +1004,7 @@ section{
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.5; }
+    0% { transform: scale(1); opacity: 0.5;}
     100% { transform: scale(1.4); opacity: 0; }
 }
 

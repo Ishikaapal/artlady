@@ -1,31 +1,58 @@
 /* ===============================
    1. GLOBAL PAGE LOAD
 ================================ */
-window.addEventListener("load", () => {
-    const heroContent = document.querySelector(".hero-content");
-    if(heroContent) heroContent.classList.add("show");
+/* Optimized Navbar Logic */
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".ip_nav_links");
+    const body = document.body;
+
+    // Helper to toggle state
+    const toggleMenu = () => {
+        const isOpen = navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+        
+        // Accessibility & Scroll Lock
+        body.style.overflow = isOpen ? "hidden" : "";
+        hamburger.setAttribute("aria-expanded", isOpen);
+    };
+
+    const closeMenu = () => {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("active");
+        body.style.overflow = "";
+        hamburger.setAttribute("aria-expanded", "false");
+    };
+
+    // Toggle on click
+    hamburger.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents immediate closing from document listener
+        toggleMenu();
+    });
+
+    // Close when clicking links or buttons
+    const menuItems = document.querySelectorAll(".ip_nav_links a, .ip_nav_links button");
+    menuItems.forEach(item => {
+        item.addEventListener("click", closeMenu);
+    });
+
+    // Close if user clicks outside the menu
+    document.addEventListener("click", (e) => {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    // Close on Escape key for better UX
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+    });
 });
 
-/* Navbar logic */
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.ip_nav_links');
-    const links = document.querySelectorAll('.ip_nav_links li');
-
-    // Toggle Menu on Click
-    hamburger.addEventListener('click', () => {
-        // Toggle the .active class on the menu and the hamburger icon
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked (optional but recommended for single page apps)
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+/* Hero Animation */
+window.addEventListener("load", () => {
+    const heroContent = document.querySelector(".hero-content");
+    if (heroContent) heroContent.classList.add("show");
 });
 
 // Mock function for your button
@@ -187,23 +214,33 @@ const pNumbers = document.querySelectorAll('.p-num');
 const progressFill = document.querySelector('.progress-fill');
 
 // CONFIG
-const slideWidth = 350; // Match CSS width
-const gap = 30;         // Match CSS gap
-const totalItemWidth = slideWidth + gap;
 const animationSpeed = 3000;
 
 // STATE
 let currentIndex = 0;
 let portfolioInterval;
 let isTransitioning = false;
-const clonesCount = originalSlides.length; // We will clone ALL slides to front and back
+const clonesCount = originalSlides.length;
+
+/**
+ * HELPER: DYNAMIC DIMENSIONS
+ * Calculates width and gap based on current CSS (handles media queries)
+ */
+function getSliderMetrics() {
+    const firstSlide = document.querySelector('.portfolio-slide');
+    if (!firstSlide) return { width: 350, gap: 30 };
+    
+    const style = window.getComputedStyle(track);
+    return {
+        width: firstSlide.offsetWidth,
+        gap: parseInt(style.gap) || 0
+    };
+}
 
 function setupPortfolio() {
-    // 1. Clear Track (but keep references in originalSlides array)
     track.innerHTML = '';
 
-    // 2. Prepend Clones (Clones of the end go to the start)
-    // Actually, to make logic simple: Clone ALL slides and put them at the start
+    // Prepend Clones
     originalSlides.forEach(slide => {
         const clone = slide.cloneNode(true);
         clone.classList.add('clone');
@@ -211,12 +248,12 @@ function setupPortfolio() {
         track.appendChild(clone);
     });
 
-    // 3. Add Originals
+    // Add Originals
     originalSlides.forEach(slide => {
         track.appendChild(slide);
     });
 
-    // 4. Append Clones (Clones of start go to the end)
+    // Append Clones
     originalSlides.forEach(slide => {
         const clone = slide.cloneNode(true);
         clone.classList.add('clone');
@@ -224,88 +261,63 @@ function setupPortfolio() {
         track.appendChild(clone);
     });
 
-    // 5. Initialize
-    // We start at 'clonesCount'. 
-    // Example: If 6 items. 0-5 are clones. 6 is the first Real item.
     currentIndex = clonesCount; 
-    updateTrackPosition(currentIndex, false);
+    // Small timeout to ensure DOM is painted before initial positioning
+    setTimeout(() => updateTrackPosition(currentIndex, false), 50);
 }
 
 function updateTrackPosition(index, animate = true) {
     const allSlides = document.querySelectorAll('.portfolio-slide');
+    const { width, gap } = getSliderMetrics();
+    const totalItemWidth = width + gap;
     
     // A. Highlight Visuals
     allSlides.forEach(s => s.classList.remove('active'));
-    // The active slide is the one at 'index'
     if(allSlides[index]) allSlides[index].classList.add('active');
 
-    // B. Map to Original Index (0 to 5)
-    // If index is 6 (first real), mapped is 0.
-    // Logic: (index - clonesCount) % originalSlides.length
-    // But we need to handle negative modulo JS quirk if needed (though here we stay positive usually)
+    // B. Map to Original Index
     let realIndex = (index - clonesCount) % originalSlides.length;
     if (realIndex < 0) realIndex += originalSlides.length;
 
-    // C. Update Pagination
+    // C. Update Pagination & Progress
     pNumbers.forEach(n => n.classList.remove('active'));
     if(pNumbers[realIndex]) pNumbers[realIndex].classList.add('active');
 
-    // D. Update Progress
     if(progressFill) {
         const percent = ((realIndex + 1) / originalSlides.length) * 100;
         progressFill.style.width = `${percent}%`;
     }
 
-    // E. Center Logic
+    // D. DYNAMIC CENTER LOGIC
     const containerWidth = document.querySelector('.portfolio-slider').offsetWidth;
     const centerPoint = containerWidth / 2;
-    const slideCenter = slideWidth / 2;
-    // Shift: Center - SlideCenter - (Position of this slide)
-    const offset = centerPoint - slideCenter - (index * totalItemWidth);
+    const slideHalf = width / 2;
+    
+    // The calculation that ensures the slide stays in the middle:
+    const offset = centerPoint - slideHalf - (index * totalItemWidth);
 
-    if (animate) track.style.transition = 'transform 0.5s ease';
-    else track.style.transition = 'none';
-
+    track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
     track.style.transform = `translateX(${offset}px)`;
     currentIndex = index;
 }
 
-// NEXT SLIDE
 function nextPortfolioSlide() {
     if (isTransitioning) return;
     
-    const maxIndex = clonesCount + originalSlides.length + clonesCount - 1; // Last clone index
-
-    // Move forward
     currentIndex++;
     updateTrackPosition(currentIndex, true);
 
-    // CHECK BOUNDARY (Loop back to start of originals)
-    track.addEventListener('transitionend', () => {
-        // If we reached the start of the appended clones set
-        // (Index = clonesCount + originalSlides.length)
+    const handleTransitionEnd = () => {
         if (currentIndex >= clonesCount + originalSlides.length) {
-            // Jump back to the start of Real slides
-            const diff = currentIndex - (clonesCount + originalSlides.length);
-            currentIndex = clonesCount + diff; 
-            updateTrackPosition(currentIndex, false); // No animation jump
-        }
-    }, { once: true });
-}
-
-// PREV SLIDE (Optional functionality, good for robustness)
-function prevPortfolioSlide() {
-    currentIndex--;
-    updateTrackPosition(currentIndex, true);
-    
-    track.addEventListener('transitionend', () => {
-        if (currentIndex < clonesCount) {
-            // Jump to end of Real slides
-            // e.g., if we are at index 5 (last pre-clone), we want to go to index 11 (last real)
-            currentIndex = clonesCount + originalSlides.length - 1;
+            currentIndex = clonesCount; 
             updateTrackPosition(currentIndex, false);
         }
-    }, { once: true });
+        isTransitioning = false;
+        track.removeEventListener('transitionend', handleTransitionEnd);
+    };
+
+    isTransitioning = true;
+    track.addEventListener('transitionend', handleTransitionEnd);
 }
 
 // AUTO PLAY
@@ -318,7 +330,6 @@ function startPortfolioLoop() {
 pNumbers.forEach((num, idx) => {
     num.addEventListener('click', () => {
         clearInterval(portfolioInterval);
-        // Map click (0-5) to Real Index (6-11)
         currentIndex = clonesCount + idx;
         updateTrackPosition(currentIndex, true);
         startPortfolioLoop();
@@ -329,12 +340,12 @@ pNumbers.forEach((num, idx) => {
 if(track) {
     setupPortfolio();
     startPortfolioLoop();
+    
+    // Recalculate everything on resize to keep it centered
     window.addEventListener('resize', () => {
-        // Recalculate center on resize
         updateTrackPosition(currentIndex, false);
     });
 }
-
 
 // service 
 document.addEventListener("DOMContentLoaded", () => {
