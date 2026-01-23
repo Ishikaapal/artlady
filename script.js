@@ -513,3 +513,33 @@ document.getElementById('auth-overlay').addEventListener('click', function(e) {
         closeAuth();
     }
 });
+
+
+
+
+
+
+
+// Vector code
+const initSliders = () => {
+  const containers = document.querySelectorAll('.comparison-container');
+
+  containers.forEach(container => {
+    const slider = container.querySelector('.slider');
+    const overlay = container.querySelector('.img-overlay');
+    const button = container.querySelector('.slider-button');
+
+    slider.addEventListener('input', (e) => {
+      const value = e.target.value;
+      
+      // Move the clip boundary
+      overlay.style.width = `${value}%`;
+      
+      // Move the visual circle
+      button.style.left = `${value}%`;
+    });
+  });
+};
+
+// Run on load
+window.addEventListener('DOMContentLoaded', initSliders);
