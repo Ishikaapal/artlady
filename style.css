@@ -1531,6 +1531,7 @@ section{
   overflow: hidden;
   border-right: 3px solid white;
   z-index: 2;
+   filter: blur(1.5px);
 }
 
 /* THE SLIDER - This is the invisible layer that captures movement */
