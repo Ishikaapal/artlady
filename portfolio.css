@@ -1,0 +1,177 @@
+/* ===================== portfolio.css ===================== */
+:root{
+  --background-color:#fff;
+  --text-color:#50347f;
+  --text-hover:#8b87b5;
+  --lux-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+/* ===== Banner ===== */
+.portfolio-banner {
+  position: relative;
+  height: 50vh;
+  background: url("assets/AJjakj.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.banner-content {
+  position: relative;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.banner-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.banner-content p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ===== Floating Shapes ===== */
+.floating-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shape {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top left, var(--text-color), var(--text-hover));
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+.shape1 { top: 15%; left: 10%; width: 140px; height: 140px; }
+.shape2 { top: 60%; left: 20%; width: 90px; height: 90px; }
+.shape3 { top: 25%; right: 15%; width: 160px; height: 160px; }
+.shape4 { bottom: 15%; right: 25%; width: 110px; height: 110px; }
+
+/* ===== Section ===== */
+.portfolio-section {
+  padding: 70px 6%;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+
+/* ===== Masonry Gallery ===== */
+.masonry-gallery {
+  column-count: 4;
+  column-gap: 24px;
+}
+
+.masonry-gallery img {
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.masonry-gallery img:hover {
+  transform: scale(1.04);
+  box-shadow: var(--lux-shadow);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .masonry-gallery { column-count: 3; }
+}
+
+@media (max-width: 768px) {
+  .masonry-gallery { column-count: 2; }
+}
+
+@media (max-width: 480px) {
+  .masonry-gallery { column-count: 1; }
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox-img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 14px;
+  box-shadow: var(--lux-shadow);
+  animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  font-size: 60px;
+  color: white;
+  cursor: pointer;
+  transform: translateY(-50%);
+  padding: 12px;
+  opacity: 0.8;
+}
+
+.nav:hover { opacity: 1; }
+
+.prev { left: 40px; }
+.next { right: 40px; }
+
+

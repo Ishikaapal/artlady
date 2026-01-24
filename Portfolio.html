@@ -1,0 +1,80 @@
+<!-- ===================== portfolio.html ===================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Art Lady – Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Portfolio CSS -->
+  <link rel="stylesheet" href="portfolio.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== Banner Section ===== -->
+  <section class="portfolio-banner">
+    <!-- Floating Decorative Shapes -->
+    <div class="floating-shapes">
+      <span class="shape shape1"></span>
+      <span class="shape shape2"></span>
+      <span class="shape shape3"></span>
+      <span class="shape shape4"></span>
+    </div>
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <h1>Our Portfolio</h1>
+      <p>Luxury Vector Transformations by Art Lady</p>
+    </div>
+  </section>
+
+  <!-- ===== Gallery Section ===== -->
+  <section class="portfolio-section">
+    <h2 class="section-heading">Featured Works</h2>
+
+    <div class="masonry-gallery">
+      <!-- 20 Images using your assets -->
+      <img src="assets/Vector1Before.jpg" />
+      <img src="assets/Embroidary.png" />
+      <img src="assets/Vector2Before.jpg" />
+      <img src="assets/Vector3Before.jpg" />
+      <img src="assets/ProductVisuals.png" />
+      <img src="assets/Printing.png" />
+      <img src="assets/Vector2Before.jpg" />
+      <img src="assets/Vector1Before.jpg" />
+
+      <img src="assets/Vector3Before.jpg" />
+      <img src="assets/Embroidary.png" />
+      <img src="assets/Vector1Before.jpg" />
+      <img src="assets/ProductVisuals.png" />
+      <img src="assets/Printing.png" />
+      <img src="assets/Vector2Before.jpg" />
+      <img src="assets/Vector3Before.jpg" />
+      <img src="assets/Vector1Before.jpg" />
+
+      <img src="assets/Embroidary.png" />
+      <img src="assets/ProductVisuals.png" />
+      <img src="assets/Printing.png" />
+      <img src="assets/Vector2Before.jpg" />
+    </div>
+  </section>
+
+  <!-- ===== Lightbox Modal ===== -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <img class="lightbox-img" id="lightboxImg" />
+    <span class="nav next">&#10095;</span>
+  </div>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>
+
+
