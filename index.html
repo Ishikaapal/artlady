@@ -18,12 +18,9 @@
   </head>
 
   <body>
-    
-    
     <!-- navbar  -->
 
     <nav class="ip_navbar">
-      
       <a href="#" class="logo">
         <img src="assets/logo.png" alt="Logo" />
       </a>
@@ -35,23 +32,14 @@
         <li><a href="#whyUs">Why Us</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li class="mobile-btn">
-          <a href="#" >
-            Order Now
-          </a>
-          <a onclick="openAuth('register')">
-            Get Started
-          </a>
+          <a href="#"> Order Now </a>
+          <a onclick="openAuth('register')"> Get Started </a>
         </li>
       </ul>
 
-
       <div class="nav-actions">
-        <a href="#">
-          Order Now <i class="fa-solid fa-cart-arrow-down"></i>
-        </a> 
-        <button onclick="openAuth('register')">
-          Get Started
-        </button>
+        <a href="#"> Order Now <i class="fa-solid fa-cart-arrow-down"></i> </a>
+        <button onclick="openAuth('register')">Get Started</button>
       </div>
 
       <div class="hamburger">
@@ -60,7 +48,7 @@
         <span class="bar"></span>
       </div>
     </nav>
-    
+
     <!-- Register and Login  -->
 
     <div id="auth-overlay" class="auth-overlay">
@@ -129,7 +117,7 @@
                   <option value="friend">others</option>
                 </select>
               </div>
-              
+
               <button type="submit">Sign Up</button>
             </form>
             <p class="switch-text">
@@ -161,90 +149,113 @@
 
     <!-- hero section  -->
 
-    <section class="hero-slider-section" id="home" aria-label="Hero Image Slider">
-      
+    <section
+      class="hero-slider-section"
+      id="home"
+      aria-label="Hero Image Slider"
+    >
       <div class="slider-container">
         <div class="hero-slide active">
           <div class="slide-image-wrapper">
-            <img src="assets/1.png" class="slide-bg-img" alt="Abstract vector art background" loading="eager" />        
-          </div>      
+            <img
+              src="assets/1.png"
+              class="slide-bg-img"
+              alt="Abstract vector art background"
+              loading="eager"
+            />
+          </div>
         </div>
 
         <div class="hero-slide">
           <div class="slide-image-wrapper">
-            <img src="assets/2.png" class="slide-bg-img" alt="Completed packaging orders" loading="lazy" />     
-      </div>      
-    </div>
+            <img
+              src="assets/2.png"
+              class="slide-bg-img"
+              alt="Completed packaging orders"
+              loading="lazy"
+            />
+          </div>
+        </div>
 
-    <div class="hero-slide">
-      <div class="slide-image-wrapper">
-        <img src="assets/3.png" class="slide-bg-img" alt="Detailed embroidery work" loading="lazy" />       
-      </div>      
-    </div>
+        <div class="hero-slide">
+          <div class="slide-image-wrapper">
+            <img
+              src="assets/3.png"
+              class="slide-bg-img"
+              alt="Detailed embroidery work"
+              loading="lazy"
+            />
+          </div>
+        </div>
 
-    <div class="hero-slide">
-      <div class="slide-image-wrapper">
-        <img src="assets/4.png" class="slide-bg-img" alt="Promotional marketing materials" loading="lazy" />      
-      </div>      
-    </div>
+        <div class="hero-slide">
+          <div class="slide-image-wrapper">
+            <img
+              src="assets/4.png"
+              class="slide-bg-img"
+              alt="Promotional marketing materials"
+              loading="lazy"
+            />
+          </div>
+        </div>
 
-    <div class="hero-slide">
-      <div class="slide-image-wrapper">
-        <img src="assets/5.png" class="slide-bg-img" alt="Promotional marketing materials" loading="lazy" />      
-      </div>      
-    </div>
-
-  </div>
-
-  <div class="slider-controls">
-    <button class="nav-btn prev" aria-label="Previous Slide">
-      &#10094; 
-    </button>
-    <div class="slide-indicators">
+        <div class="hero-slide">
+          <div class="slide-image-wrapper">
+            <img
+              src="assets/5.png"
+              class="slide-bg-img"
+              alt="Promotional marketing materials"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
-    <button class="nav-btn next" aria-label="Next Slide">
-      &#10095;
-    </button>
-  </div>
-</section>
 
-<!-- vector wala section -->
-<div id="vectorSection">
-  <div class="vectorHeader">  
-    <h2>Vector Transformation</h2>
-    <p>
-      Where elegance meets flawless vector craftsmanship.
-    </p>
-  </div>
-    
-  <div class="comparison-row">
-    
-    <div class="comparison-container">
-      <img src="assets/Vector1After.jpg" alt="Before">
-      <div class="img-overlay"><img src="assets/Vector1After.jpg" alt="After"></div>
-      <input type="range" min="0" max="100" value="50" class="slider">
-      <div class="slider-button"></div>
+      <div class="slider-controls">
+        <button class="nav-btn prev" aria-label="Previous Slide">
+          &#10094;
+        </button>
+        <div class="slide-indicators"></div>
+        <button class="nav-btn next" aria-label="Next Slide">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- vector wala section -->
+    <div id="vectorSection">
+      <div class="vectorHeader">
+        <h2>Vector Transformation</h2>
+        <p>Where elegance meets flawless vector craftsmanship.</p>
+      </div>
+
+      <div class="comparison-row">
+        <div class="comparison-container">
+          <img src="assets/Vector1After.jpg" alt="Before" />
+          <div class="img-overlay">
+            <img src="assets/Vector1After.jpg" alt="After" />
+          </div>
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+
+        <div class="comparison-container">
+          <img src="assets/Vector2After.jpg" alt="Before" />
+          <div class="img-overlay">
+            <img src="assets/Vector2After.jpg" alt="After" />
+          </div>
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+
+        <div class="comparison-container">
+          <img src="assets/Vector3After.jpg" alt="Before" />
+          <div class="img-overlay">
+            <img src="assets/Vector3After.jpg" alt="After" />
+          </div>
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+      </div>
     </div>
-
-    <div class="comparison-container">
-      <img src="assets/Vector2After.jpg" alt="Before">
-      <div class="img-overlay"><img src="assets/Vector2After.jpg" alt="After"></div>
-      <input type="range" min="0" max="100" value="50" class="slider">
-      <div class="slider-button"></div>
-    </div>
-
-    <div class="comparison-container">
-      <img src="assets/Vector3After.jpg" alt="Before">
-      <div class="img-overlay"><img src="assets/Vector3After.jpg" alt="After"></div>
-      <input type="range" min="0" max="100" value="50" class="slider">
-      <div class="slider-button"></div>
-    </div>
-
-  </div>
-</div>
-
-
-</section>
 
     <!-- about us section  -->
 
@@ -257,8 +268,8 @@
           </h2>
 
           <p class="about-description">
-            At <strong>Artwork Lady</strong>, we’re more than a design firm—we’re
-            a creative partner trusted by businesses worldwide. With
+            At <strong>Artwork Lady</strong>, we’re more than a design
+            firm—we’re a creative partner trusted by businesses worldwide. With
             collaborators across
             <strong>Europe, USA, Australia, and beyond</strong>, we deliver
             fast, accurate, and impactful design services tailored for the
@@ -340,86 +351,13 @@
       </div>
     </section>
 
-    <!-- services section  -->
-
-  <section class="ip_core-services" id="services">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-
-  <div class="ip_container">
-    <div class="section-header unified-header">
-  
-  <h2>Our Core Services</h2>
-  <p>
-    At <strong>ArtworkLady</strong>, we blend technical precision with creative flair. 
-    Empowering brands with pixel-perfect assets and strategic positioning.
-  </p>
-</div>
-
-    <div class="services-grid">
-      <div class="service-card" data-step="01">
-        <div class="card-inner">
-          <div class="icon-box">✒️</div>
-          <h3>Vector Art <br>Conversion</h3>
-          <p>Scalable, print-ready graphics engineered for perfect screen printing results.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-
-      <div class="service-card" data-step="02">
-        <div class="card-inner">
-          <div class="icon-box">🧵</div>
-          <h3>Embroidery <br>Digitizing</h3>
-          <p>Production-grade stitch files optimized for thread count and fabric stability.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-
-      <div class="service-card" data-step="03">
-        <div class="card-inner">
-          <div class="icon-box">🧊</div>
-          <h3>3D Product <br>Visuals</h3>
-          <p>Hyper-realistic mockups that allow customers to visualize the final product instantly.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-
-      <div class="service-card" data-step="04">
-        <div class="card-inner">
-          <div class="icon-box">🎨</div>
-          <h3>Creative <br>Design</h3>
-          <p>Compelling brochures, flyers, and branding assets that tell your unique story.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-
-      <div class="service-card" data-step="05">
-        <div class="card-inner">
-          <div class="icon-box">💻</div>
-          <h3>Web Dev <br>& SEO</h3>
-          <p>High-performance e-commerce stores built for speed, SEO, and sales conversion.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-
-      <div class="service-card" data-step="06">
-        <div class="card-inner">
-          <div class="icon-box">🛡️</div>
-          <h3>Brand <br>Identity</h3>
-          <p>Conceptual logo design that creates a memorable and lasting business footprint.</p>
-          <a href="#" class="btn-text">Discover <span class="arr">&nearr;</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
     <!-- why us section  -->
     <section class="why-us-section" id="whyUs">
       <div class="section-header unified-header">
         <h2>Why Choose Us</h2>
         <p>
-          Trusted globally for speed, creativity, and precision-driven design excellence.
+          Trusted globally for speed, creativity, and precision-driven design
+          excellence.
         </p>
       </div>
       <div class="container">
@@ -479,23 +417,122 @@
       </div>
     </section>
 
+    <!-- services section  -->
+
+    <section class="ip_core-services" id="services">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+
+      <div class="ip_container">
+        <div class="section-header unified-header">
+          <h2>Our Core Services</h2>
+          <p>
+            At <strong>ArtworkLady</strong>, we blend technical precision with
+            creative flair. Empowering brands with pixel-perfect assets and
+            strategic positioning.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card" data-step="01">
+            <div class="card-inner">
+              <div class="icon-box">✒️</div>
+              <h3>Vector Art <br />Conversion</h3>
+              <p>
+                Scalable, print-ready graphics engineered for perfect screen
+                printing results.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="02">
+            <div class="card-inner">
+              <div class="icon-box">🧵</div>
+              <h3>Embroidery <br />Digitizing</h3>
+              <p>
+                Production-grade stitch files optimized for thread count and
+                fabric stability.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="03">
+            <div class="card-inner">
+              <div class="icon-box">🧊</div>
+              <h3>3D Product <br />Visuals</h3>
+              <p>
+                Hyper-realistic mockups that allow customers to visualize the
+                final product instantly.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="04">
+            <div class="card-inner">
+              <div class="icon-box">🎨</div>
+              <h3>Creative <br />Design</h3>
+              <p>
+                Compelling brochures, flyers, and branding assets that tell your
+                unique story.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="05">
+            <div class="card-inner">
+              <div class="icon-box">💻</div>
+              <h3>Web Dev <br />& SEO</h3>
+              <p>
+                High-performance e-commerce stores built for speed, SEO, and
+                sales conversion.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="06">
+            <div class="card-inner">
+              <div class="icon-box">🛡️</div>
+              <h3>Brand <br />Identity</h3>
+              <p>
+                Conceptual logo design that creates a memorable and lasting
+                business footprint.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- portfolio section  -->
 
     <section class="portfolio-section" id="portfolio">
-      
       <div class="section-header unified-header">
-        <h2 style="font-size: 38px;">We Create. We Execute. We Deliver.</h2>
+        <h2 style="font-size: 38px">We Create. We Execute. We Deliver.</h2>
       </div>
-      
+
       <div class="portfolio-slider">
         <div class="slider-track" id="sliderTrack">
           <div class="portfolio-slide" data-index="0">
-            <img
-              src="assets/3DRandering.png"
-              alt="3D Randering"
-            />
+            <img src="assets/3DRandering.png" alt="3D Randering" />
             <div class="slide-overlay">
-
               <h3 class="overlay-title">3D Randering</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -503,12 +540,8 @@
             </div>
           </div>
           <div class="portfolio-slide" data-index="1">
-            <img
-              src="assets/PosterMaking.png"
-              alt="PosterMaking"
-            />
+            <img src="assets/PosterMaking.png" alt="PosterMaking" />
             <div class="slide-overlay">
-             
               <h3 class="overlay-title">Poster Making</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -516,12 +549,8 @@
             </div>
           </div>
           <div class="portfolio-slide" data-index="2">
-            <img
-              src="assets/Embroidary.png"
-              alt="embroidery"
-            />
+            <img src="assets/Embroidary.png" alt="embroidery" />
             <div class="slide-overlay">
-              
               <h3 class="overlay-title">Embroidary</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -529,12 +558,8 @@
             </div>
           </div>
           <div class="portfolio-slide" data-index="3">
-            <img
-              src="assets/Printing.png"
-              alt="Printing"
-            />
+            <img src="assets/Printing.png" alt="Printing" />
             <div class="slide-overlay">
-              
               <h3 class="overlay-title">Printing</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -542,12 +567,8 @@
             </div>
           </div>
           <div class="portfolio-slide" data-index="4">
-            <img
-              src="assets/ProductVisuals.png"
-              alt="Product Visuals"
-            />
+            <img src="assets/ProductVisuals.png" alt="Product Visuals" />
             <div class="slide-overlay">
-             
               <h3 class="overlay-title">Product Visuals</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -555,12 +576,8 @@
             </div>
           </div>
           <div class="portfolio-slide" data-index="5">
-            <img
-              src="assets/VectorArt.png"
-              alt="Vector Art"
-            />
+            <img src="assets/VectorArt.png" alt="Vector Art" />
             <div class="slide-overlay">
-             
               <h3 class="overlay-title">Vector Art</h3>
               <button class="overlay-btn">
                 <i class="fas fa-arrow-right"></i>
