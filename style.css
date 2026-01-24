@@ -300,7 +300,7 @@ section{
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: #f4f4f4;
+    background: var(--bg-gradient);
 }
 
 /* Centered slider box */
