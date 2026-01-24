@@ -90,6 +90,14 @@
     font-size: 18px;
   }
 
+   /* Vector Section */
+  .vectorHeader h2{
+    font-size: 2rem;
+  }
+  .vectorHeader p{
+    font-size: 1rem;
+  }
+
   /* ---------- ABOUT SECTION ---------- */
   .about-container {
     grid-template-columns: 1fr;
@@ -244,6 +252,8 @@
   .hero-slider-section {
     height: 80vh;
   }
+
+ 
 
   /* ---------- ABOUT SECTION ---------- */
   .about-container {
