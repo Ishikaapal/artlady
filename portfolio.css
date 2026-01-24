@@ -4,6 +4,7 @@
   --text-color:#50347f;
   --text-hover:#8b87b5;
   --lux-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  --bg-gradient: linear-gradient(90deg, #e6e1ff, #e9f7f1);
 }
 
 * {
@@ -32,7 +33,7 @@ body {
 .banner-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-gradient);
 }
 
 .banner-content {
