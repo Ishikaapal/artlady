@@ -2,14 +2,13 @@
    MOBILE RESPONSIVE (<= 768px)
 ===================================== */
 @media (max-width: 768px) {
-
   :root {
     --container-padding: 20px 5%;
   }
 
-  section{
+  section {
     scroll-margin-top: 8vh;
-}
+  }
 
   /* ---------- NAVBAR ---------- */
   .ip_navbar {
@@ -37,10 +36,10 @@
     z-index: 999;
     padding-left: 5%;
   }
-  .ip_nav_links li a{
+  .ip_nav_links li a {
     font-size: 24px;
   }
-  .ip_nav_links li a::before{
+  .ip_nav_links li a::before {
     display: block;
   }
   .ip_nav_links.active {
@@ -54,13 +53,12 @@
   .hamburger {
     display: block;
   }
-  .mobile-btn{
+  .mobile-btn {
     display: flex;
     flex-direction: column;
     gap: 32px;
   }
 
-  
   /* ---------- HERO SLIDER ---------- */
   .hero-slider-section {
     height: 24vh;
@@ -78,11 +76,10 @@
     padding: 0 10px;
   }
 
-.slide-bg-img {
+  .slide-bg-img {
     width: 100%;
     height: 100%;
-
-}
+  }
 
   .nav-btn {
     width: 42px;
@@ -90,12 +87,16 @@
     font-size: 18px;
   }
 
-   /* Vector Section */
-  .vectorHeader h2{
+  /* Vector Section */
+  .vectorHeader h2 {
     font-size: 2rem;
   }
-  .vectorHeader p{
+  .vectorHeader p {
     font-size: 1rem;
+  }
+
+  .comparison-row {
+    flex-direction: column;
   }
 
   /* ---------- ABOUT SECTION ---------- */
@@ -170,16 +171,34 @@
 
   /* ---------- FOOTER ---------- */
   .footer-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column stack */
     text-align: center;
+    gap: 40px;
+  }
+
+  .brand-col,
+  .contact-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the logo and contact boxes */
   }
 
   .social-orbit {
     justify-content: center;
   }
 
+  .link-list a {
+    justify-content: center; /* Centers links in the middle */
+  }
+
+  .link-list a::before {
+    display: none; /* Optional: Remove arrow on mobile to save space */
+  }
+
   .contact-item {
-    justify-content: center;
+    justify-content: flex-start; /* Keep text left-aligned inside the centered box */
+    width: 100%;
+    max-width: 300px; /* Prevents contact boxes from being too wide */
   }
 
   .footer-bottom {
@@ -194,10 +213,10 @@
     width: 95%;
     border-radius: 20px;
   }
-  .card-left{
+  .card-left {
     display: none;
   }
- 
+
   .card-right {
     width: 100%;
     padding: 25px;
@@ -207,15 +226,12 @@
     height: 160px;
     margin-top: 20px;
   }
-
 }
-
 
 /* =====================================
    TABLET RESPONSIVE (768px – 1024px)
 ===================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
-
   :root {
     --container-padding: 24px 6%;
   }
@@ -252,8 +268,6 @@
   .hero-slider-section {
     height: 80vh;
   }
-
- 
 
   /* ---------- ABOUT SECTION ---------- */
   .about-container {
@@ -309,13 +323,13 @@
   /* ---------- PORTFOLIO ---------- */
   .portfolio-slide {
     /* Use a fixed width that fits mobile screens well */
-    flex: 0 0 280px; 
+    flex: 0 0 280px;
     height: 400px;
   }
 
   /* Reduce gap for mobile to keep more of the side slides visible */
   .slider-track {
-    gap: 15px; 
+    gap: 15px;
   }
 
   .portfolio-controls {
@@ -323,16 +337,15 @@
     flex-direction: column; /* Stack progress bar and numbers if needed */
     gap: 15px;
   }
-  
+
   .progress-bar {
     width: 100%;
   }
 
   /* ---------- FOOTER ---------- */
   .footer-content {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
-    gap: 40px;
-    text-align: left;
+    grid-template-columns: 1fr 1fr; /* Two columns for tablets */
+    gap: 30px;
   }
 
   .footer-logo {
@@ -354,5 +367,4 @@
     width: 90%;
     height: 600px;
   }
-
 }

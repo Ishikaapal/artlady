@@ -17,6 +17,8 @@
 body {
   background: var(--background-color);
   color: var(--text-color);
+  overflow-x: hidden;
+  font-family: sans-serif;
 }
 
 /* ===== Banner ===== */
@@ -174,5 +176,6 @@ body {
 
 .prev { left: 40px; }
 .next { right: 40px; }
+
 
 
