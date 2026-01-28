@@ -65,10 +65,10 @@ body {
 .subtitle {
     font-family: 'Syncopate', sans-serif;
     /* Uses clamp to scale size: min 10px, preferred 1.2vw, max 14px */
-    font-size: clamp(10px, 1.2vw, 14px); 
+    font-size: clamp(14px, 1.6vw, 18px); 
     /* Slightly reduced letter spacing for better mobile fit */
     letter-spacing: clamp(0.4em, 0.8vw, 0.8em);
-    color: var(--bg);
+    color: #fff;
     text-transform: uppercase;
     display: block;
     margin-bottom: clamp(10px, 2vh, 20px);
