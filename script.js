@@ -617,3 +617,4 @@ const initSliders = () => {
 };
 
 document.addEventListener("DOMContentLoaded", initSliders);
+

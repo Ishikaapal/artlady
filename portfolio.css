@@ -1,94 +1,285 @@
 :root {
-  --background-color: #fff;
-  --text-color: #50347f;
-  --text-hover: #8b87b5;
-  --lux-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  --bg-gradient: linear-gradient(135deg, #f3f0ff 0%, #e9f7f1 100%);
+    --bg: #050505;
+    --card-bg: #111111;
+    --accent: #50347f;
+    --text: #ffffff;
+    --text-muted: #888888;
+    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+    --container-padding: 24px 5%;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--background-color); color: var(--text-color); overflow-x: hidden; }
-
-/* ===== Banner ===== */
-.portfolio-banner {
-  position: relative;
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #f8f9fa;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
-.banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: var(--bg-gradient);
-  z-index: 0;
+body {
+   
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
-.banner-content {
-  position: relative;
-  z-index: 5;
-  text-align: center;
+/* --- Hero --- */
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Critical for parallax */
+   
 }
 
-.banner-content h1 { font-size: clamp(32px, 5vw, 60px); font-weight: 800; color: var(--text-color); }
-.banner-content p { font-size: 1.1rem; opacity: 0.8; margin-top: 10px; }
-
-/* ===== Floating Shapes ===== */
-.shape {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(45deg, var(--text-color), var(--text-hover));
-  filter: blur(40px);
-  opacity: 0.3;
-  z-index: 1;
-}
-.shape1 { width: 300px; height: 300px; top: -100px; left: -50px; }
-.shape2 { width: 200px; height: 200px; bottom: -50px; right: 10%; }
-
-/* ===== Masonry Gallery ===== */
-.portfolio-section { padding: 80px 6%; }
-.section-heading { text-align: center; margin-bottom: 60px; font-weight: 700; font-size: 2.5rem; }
-
-.masonry-gallery {
-  column-count: 4;
-  column-gap: 25px;
+/* --- Background Layer (Moves Slower) --- */
+.hero-overlay {
+    position: absolute;
+    top: -10%; 
+    left: 0;
+    width: 100%;
+    height: 120%; 
+    /* Added a dark tint over the image to help white text pop */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                radial-gradient(circle at center, rgba(0,242,255,0.08) 0%, transparent 70%),
+                url('assets/bg1.png') center/cover no-repeat;
+    
+    /* The Blur Effect */
+    filter: blur(6px); /* Adjust the pixels for more/less blur */
+    
+    /* Slight scale up prevents the blurred edges from showing white gaps */
+    transform: scale(1.1);
+    
+    z-index: 1;
+    will-change: transform;
 }
 
-.masonry-gallery img {
-  width: 100%;
-  margin-bottom: 25px;
-  border-radius: 20px;
-  cursor: pointer;
-  background: #f0f0f0;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  
-  /* PIXELATE FILTER APPLIED HERE */
-  filter: url(#pixelate);
-  image-rendering: pixelated;
-  opacity: 0; /* Handled by GSAP */
+/* --- Foreground Content (Moves Faster) --- */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    will-change: transform, opacity;
 }
 
-.masonry-gallery img:hover {
-  /* CLEAR IMAGE ON HOVER */
-  filter: url(); 
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: var(--lux-shadow);
-  z-index: 10;
+.subtitle {
+    font-family: 'Syncopate', sans-serif;
+    /* Uses clamp to scale size: min 10px, preferred 1.2vw, max 14px */
+    font-size: clamp(10px, 1.2vw, 14px); 
+    /* Slightly reduced letter spacing for better mobile fit */
+    letter-spacing: clamp(0.4em, 0.8vw, 0.8em);
+    color: var(--bg);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: clamp(10px, 2vh, 20px);
+    
+    /* Enhanced readability */
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    
+    /* Animation stays the same */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealIn 1s var(--ease-premium) forwards 0.3s;
 }
 
-/* Responsive Grid */
-@media (max-width: 1100px) { .masonry-gallery { column-count: 3; } }
-@media (max-width: 768px) { .masonry-gallery { column-count: 2; } }
-@media (max-width: 480px) { .masonry-gallery { column-count: 1; } }
-
-/* ===== Lightbox (Ensure image is sharp) ===== */
-.lightbox-img {
-  filter: none !important; /* Always clear in lightbox */
-  max-width: 90%;
-  max-height: 85vh;
-  object-fit: contain;
+.glitch-text {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 15vw, 10rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: revealIn 1.2s var(--ease-premium) forwards 0.5s;
 }
-/* ... keep your previous Lightbox CSS styles below ... */
+
+/* --- Scroll Indicator Animation --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s infinite ease-in-out;
+}
+
+@keyframes revealIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollLine {
+    0% { transform: translateX(-50%) scaleY(0); transform-origin: top; }
+    50% { transform: translateX(-50%) scaleY(1); transform-origin: top; }
+    51% { transform: translateX(-50%) scaleY(1); transform-origin: bottom; }
+    100% { transform: translateX(-50%) scaleY(0); transform-origin: bottom; }
+}
+
+/* --- Fixed Filter Bar --- */
+/* --- Filter Wrapper Fix --- */
+.filter-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(90deg, #e6e1ff, #e9f7f1); /* Slightly more opaque for readability */
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    overflow: hidden; /* Prevents unwanted horizontal body scroll */
+}
+
+.filter-container {
+    display: flex;
+    gap: 12px;
+    padding: 15px 20px;
+    
+    /* Mobile-First Scroll Logic */
+    overflow-x: auto; 
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Momentum scroll for iOS */
+    
+    /* Desktop default: centered */
+    justify-content: center; 
+}
+
+/* Hide Scrollbar for a clean look */
+.filter-container::-webkit-scrollbar {
+    display: none;
+}
+.filter-container {
+    scrollbar-width: none; /* Firefox */
+}
+
+.filter-btn {
+    flex: 0 0 auto; /* Prevents buttons from shrinking */
+    scroll-snap-align: start;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 100px;
+    background: var(--accent);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover{
+    filter: contrast(1.2);
+    scale: 1.05;
+}
+
+.filter-btn.active {
+    background: #8b87b5;
+    color: #fff;
+    border-color: #fff;
+}
+
+
+/* --- Enhanced Masonry Grid --- */
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 80vh; /* Prevents footer jump */
+}
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-auto-rows: 10px;
+    gap: 20px;
+}
+
+.grid-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    will-change: transform, opacity;
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+}
+.grid-item:hover{
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card-inner img {
+    width: 100%;
+    display: block;
+    height: auto;
+    transition: transform 0.6s ease;
+}
+
+.grid-item:hover img { transform: scale(1.10); }
+
+/* --- Production-Grade Lightbox --- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.98);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(15px);
+}
+
+.lightbox.active { display: flex; opacity: 1; }
+
+.lb-container {
+    position: relative;
+    width: 90%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.lb-nav {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    width: 60px; height: 60px; 
+    border-radius: 50%;
+    cursor: pointer; 
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.lb-nav:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+.lb-prev { left: 20px; }
+.lb-next { right: 20px; }
+.lb-close { 
+    position: absolute; 
+    top: 25px; right: 25px; 
+    color: #fff; font-size: 40px; 
+    cursor: pointer; 
+    z-index: 10002;
+    line-height: 1;
+}
+
+
+
