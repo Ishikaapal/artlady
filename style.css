@@ -1074,7 +1074,8 @@ portfolio-section {
   width: 100%;
   height: 550px;
   display: flex;
-  align-items: center; /* Centers the active slide vertically */
+  align-items: center; 
+  overflow: hidden;/* Centers the active slide vertically */
 }
 
 .slider-track {
