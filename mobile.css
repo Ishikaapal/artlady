@@ -147,7 +147,8 @@
   /* ---------- PORTFOLIO ---------- */
 
   .portfolio-header h2{
-    font-size: 32px;
+    font-size: 24px;
+    font-weight: 600;
   }
   .portfolio-slider {
     height: auto;
