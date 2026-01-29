@@ -485,47 +485,29 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Dynamic Year
   const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // 2. Active Link Highlighting (Optional for footer)
-  // This highlights the footer link if the current URL matches the link href
-  const footerLinks = document.querySelectorAll(".footer-links a");
-  const currentPath = window.location.pathname;
-  const currentHash = window.location.hash;
+  // 2. Scroll Reveal Animation Logic
+  const revealElements = document.querySelectorAll(".reveal");
 
-  footerLinks.forEach((link) => {
-    // Check if link matches current page or hash
-    if (
-      link.getAttribute("href") === currentPath ||
-      link.getAttribute("href") === currentHash
-    ) {
-      link.style.color = "#4a90e2"; // Set active color directly
-      link.style.fontWeight = "bold";
-    }
-  });
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.9; // Trigger when 90% in view
 
-  // 3. Smooth Scroll for footer anchor links
-  footerLinks.forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
+    revealElements.forEach((el, index) => {
+      const elTop = el.getBoundingClientRect().top;
 
-      // Only scroll if it's a hash link on the same page (e.g., #home)
-      if (href.startsWith("#")) {
-        e.preventDefault();
-        const targetId = href.substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        if (targetSection) {
-          window.scrollTo({
-            top: targetSection.offsetTop - 80, // Offset for sticky navbar
-            behavior: "smooth",
-          });
-        }
+      if (elTop < triggerBottom) {
+        // Add a small delay for each column to create a "wave" effect
+        setTimeout(() => {
+          el.classList.add("active");
+        }, index * 150); 
       }
     });
-  });
+  };
+
+  // Initial check on load and on every scroll
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // Run once in case it's already in view
 });
 
 // ====================
