@@ -145,6 +145,10 @@
   }
 
   /* ---------- PORTFOLIO ---------- */
+
+  .portfolio-header h2{
+    font-size: 32px;
+  }
   .portfolio-slider {
     height: auto;
   }
