@@ -148,8 +148,10 @@
 
   .portfolio-section{
     height: 60vh;
-    
 
+  }
+  portfolioHeader{
+    margin-top: 32px;
   }
   .portfolio-header{
    height: 15vh;
@@ -238,6 +240,19 @@
     height: 160px;
     margin-top: 20px;
   }
+
+  
+.unified-header {
+  margin: 0 auto 2rem;
+}
+
+
+
+/* Main title */
+.unified-header h2 {
+  font-size: 2rem;
+}
+
 }
 
 /* =====================================

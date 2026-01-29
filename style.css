@@ -1060,13 +1060,13 @@ section {
   position: relative;
   max-width: 100%;
   height: 100vh;
+  padding: var(--container-padding);
 }
 
 .portfolio-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--container-padding);
   width: 100%;
   height: 150px;
 }
@@ -1603,7 +1603,7 @@ section {
 
 .unified-header {
   text-align: center;
-  max-width: 720px;
+  max-width: 1280px;
   margin: 0 auto 4rem;
   position: relative;
 }
