@@ -65,15 +65,20 @@
     min-height: 240px;
   }
 
-
-  .slider-controls {
-    padding: 0 5px;
+.slider-controls {
+    padding: 0 10px; /* Bring buttons closer to edges */
   }
 
   .nav-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.4); /* Higher opacity for visibility */
+  }
+
+  .slide-indicators {
+    bottom: 15px; /* Pull indicators up slightly */
+    gap: 8px;
   }
 
   /* Vector Section */

@@ -321,35 +321,58 @@ section {
 }
 
 /* Controls & Indicators */
+/* Base Styles (Desktop) */
 .slider-controls {
   position: absolute;
   top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%); /* Perfectly centers buttons vertically */
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
+  align-items: center;
+  padding: 0 20px;
   z-index: 10;
-  pointer-events: none; /* Allows clicking through to the image if needed */
+  pointer-events: none;
+}
+.nav-btn, 
+.slide-indicators {
+  pointer-events: auto; /* Re-enables clicking */
 }
 
 .nav-btn {
   background: rgba(255, 255, 255, 0.2);
   border: none;
   color: var(--text-color);
-  padding: 15px 20px;
+  width: 50px;  /* Fixed width for perfect circles */
+  height: 50px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border-radius: 50%;
   backdrop-filter: blur(3px);
-  transition: 0.3s;
+  -webkit-backdrop-filter: blur(3px); /* Safari support */
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
 
-.nav-btn, .slide-indicators {
-  pointer-events: auto; /* Re-enable clicking for buttons */
+.slide-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
 }
+
+
 
 
 
@@ -1039,8 +1062,11 @@ section {
 }
 
 .portfolio-header {
-  text-align: center;
-  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  height: 20vh;
 }
 .portfolio-header h2 {
   font-size: 42px;
@@ -1050,23 +1076,19 @@ section {
 
 .portfolio-slider {
   width: 100%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  /* We don't hide overflow here so elements can slide in, 
-       but parent .portfolio-section hides it */
+  height: 90vh;
 }
 
 .slider-track {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   will-change: transform;
   /* Track transform is handled by JS */
 }
 
 .portfolio-slide {
   flex: 0 0 350px;
-  height: 500x; /* Increased height to accommodate text below */
+  height: 70%; /* Increased height to accommodate text below */
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -1082,8 +1104,8 @@ section {
 
 .portfolio-slide img {
   width: 100%;
-  height: 90%; /* Leave room for text below */
-  object-fit: cover;
+  height: 80%; /* Leave room for text below */
+  object-fit: contain;
   pointer-events: none;
 }
 
@@ -1099,9 +1121,9 @@ section {
   /* Removed absolute positioning */
   position: relative; 
   width: 100%;
+  height: 20%;
   padding: 15px 4px;
   text-align: center;
-  background-color: #e6e6e6;
   color: var(--text-color);
   opacity: 0; /* Hidden by default */
   transform: translateY(10px);
@@ -1118,7 +1140,7 @@ section {
   padding: 4px;
   font-size: 24px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-color);
 }
 /* CONTROLS */
@@ -1360,12 +1382,17 @@ section {
   gap: 20px;
 }
 
+.contact-info :hover{
+  transform: translateY(-3px);
+}
+
 .contact-link {
   display: flex;
   align-items: center;
   gap: 15px;
   text-decoration: none;
 }
+
 
 .contact-link i {
   color: #8a2be2;
