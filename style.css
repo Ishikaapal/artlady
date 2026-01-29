@@ -1161,196 +1161,257 @@ section {
    MODERN FOOTER STYLES
 ================================ */
 
-.celestial-footer {
-  background-color: var(--bg-deep);
-  color: var(--text-main);
-  padding-top: 0;
-  position: relative;
-  font-family: "Poppins", sans-serif; /* Ensure you have a nice font loaded */
-  overflow: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-color: #080a11;
+  --text-main: #ffffff;
+  --text-dim: #a0a4b8;
+  --accent-gradient: linear-gradient(135deg, #e068a0, #8a2be2);
+  --transition: all 0.3s ease;
 }
 
-/* 1. The Glowing Top Line */
+/* star */
+
+/* --- New Background & Animation CSS --- */
+
+.celestial-footer {
+  position: relative;
+  overflow: hidden; /* Keeps stars inside the footer */
+}
+
+/* Floating Stars Background */
+.footer-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.3;
+  filter: blur(1px);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Star positions and sizes */
+.star-1 { width: 30px; height: 30px; top: 20%; left: 5%; animation-delay: 0s; box-shadow: 0 0 10px #e068a0; }
+.star-2 { width: 28px; height: 28px; top: 60%; right: 8%; animation-delay: 2s; box-shadow: 0 0 10px #8a2be2; }
+.star-3 { width: 24px; height: 24px; top: 10%; right: 15%; animation-delay: 4s; box-shadow: 0 0 10px #62e758;}
+.star-4 { width: 18px; height: 18px; bottom: 15%; left: 12%; animation-delay: 1s; box-shadow: 0 0 10px #4a90e2; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 0.6; }
+}
+
+/* Scroll Reveal Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle Link Hover Pop */
+.footer-links a:hover {
+  transform: scale(1.05) translateX(5px);
+  color: var(--text-main);
+  text-shadow: 0 0 8px rgba(224, 104, 160, 0.5);
+}
+
+
+
+.celestial-footer {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Poppins', sans-serif;
+  padding-top: 0;
+}
+
 .glow-line {
   width: 100%;
-  height: 4px;
-  background: var(--celestial-gradient);
-  box-shadow: 0 0 20px rgba(224, 104, 160, 0.5); /* Glowing pink aura */
+  height: 2px;
+  background: var(--accent-gradient);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--container-padding);
 }
 
 .footer-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 40px 20px; /* Use standard padding if variable isn't set */
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
   gap: 40px;
 }
 
-/* 2. Logo Section */
-.footer-logo img {
-  height: 90px; /* Adjust based on your actual image size */
-  width: auto;
+/* Brand Section */
+.brand-title {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
   margin-bottom: 20px;
-  /* Optional: Brightness boost if the logo is too dark */
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
 }
 
-.tagline {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+.brand-title span {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-tagline {
+  color: var(--text-dim);
+  font-size: 1.5rem;
   line-height: 1.6;
   margin-bottom: 25px;
 }
 
-/* Social Orbit Icons */
-.social-orbit {
+.brand-tagline strong {
+  color: var(--text-main);
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Socials */
+.social-links {
   display: flex;
   gap: 15px;
 }
 
-.orbit-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* Circle */
-  background: rgba(255, 255, 255, 0.05);
+.social-links a {
+  color: var(--text-main);
+  font-size: 1.4rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-main);
+  transition: var(--transition);
   text-decoration: none;
-  transition: 0.4s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.orbit-icon:hover {
-  background: transparent;
-  border-color: var(--logo-pink);
-  color: var(--logo-pink);
-  transform: translateY(-5px) rotate(360deg); /* Spin and float effect */
-  box-shadow: 0 0 15px var(--logo-purple);
+.social-links a:hover {
+  border-color: #e068a0;
+  color: #e068a0;
+  transform: translateY(-3px);
 }
 
-/* 3. Headings & Links */
-.footer-heading {
-  font-size: 1.2rem;
-  margin-bottom: 25px;
+/* Column Headings */
+.column-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 30px;
   position: relative;
-  display: inline-block;
-  background: var(--celestial-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Text Gradient */
-  font-weight: 700;
 }
 
-.link-list {
+.column-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-gradient);
+}
+
+/* Links */
+.footer-links {
   list-style: none;
   padding: 0;
 }
 
-.link-list li {
+.footer-links li {
   margin-bottom: 12px;
 }
 
-.link-list a {
-  color: var(--text-muted);
+.footer-links a {
+  color: var(--text-dim);
   text-decoration: none;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
+  font-size: 1.2rem;
+  transition: var(--transition);
 }
 
-/* Hover Arrow Effect */
-.link-list a::before {
-  content: "›";
-  margin-right: 8px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: 0.3s;
-  color: var(--logo-blue);
+.footer-links a:hover {
+  color: var(--text-main);
+  padding-left: 5px;
 }
 
-.link-list a:hover {
-  color: var(--logo-peach); /* Peach hover color */
-  transform: translateX(5px);
-}
-
-.link-list a:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* 4. Actionable Contact Section */
-.contact-list {
-  list-style: none;
-  padding: 0;
+/* Contact Info Column */
+.contact-info {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.contact-item {
+.contact-link {
   display: flex;
   align-items: center;
   gap: 15px;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid transparent;
-  transition: 0.3s ease;
 }
 
-.contact-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--logo-purple);
-  transform: translateX(5px);
+.contact-link i {
+  color: #8a2be2;
+  font-size: 1.24rem;
 }
 
-.icon-box {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--logo-purple), var(--logo-blue));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+
+.contact-link strong {
+  display: block;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.contact-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-text span {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.contact-text strong {
-  color: #fff;
-  font-size: 0.95rem;
-}
-
-/* 5. Footer Bottom */
+/* Bottom Bar */
 .footer-bottom {
-  background: #000;
-  padding: 20px 0;
   text-align: center;
-  font-size: 0.9rem;
+  padding: 30px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: #666;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: #555;
 }
 
-.footer-bottom a {
-  color: var(--logo-blue);
-  text-decoration: none;
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .column-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .contact-link {
+    justify-content: center;
+  }
+  .social-links {
+    justify-content: center;
+  }
 }
 
 /* register and login section  */
