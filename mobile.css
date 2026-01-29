@@ -147,12 +147,11 @@
   /* ---------- PORTFOLIO ---------- */
 
   .portfolio-section{
-    height: 60vh;
+    height: 70vh;
+    scroll-margin-top: 24px;
 
   }
-  portfolioHeader{
-    margin-top: 32px;
-  }
+ 
   .portfolio-header{
    height: 15vh;
    margin-top: 24px;
