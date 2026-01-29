@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Hero Animation */
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("sliderContainer");
   const slides = document.querySelectorAll(".hero-slide");
   const prevBtn = document.querySelector(".nav-btn.prev");
   const nextBtn = document.querySelector(".nav-btn.next");
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let slideInterval;
 
-  // 1. Create Indicators dynamically
+  // Create Indicators
   slides.forEach((_, index) => {
     const dot = document.createElement("span");
     dot.classList.add("dot");
@@ -72,11 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dots = document.querySelectorAll(".dot");
 
-  // 2. Function to update slides
   function updateSlider() {
-    slides.forEach((slide, index) => {
-      slide.classList.toggle("active", index === currentIndex);
-      dots[index].classList.toggle("active", index === currentIndex);
+    // Move the entire container horizontally
+    container.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
     });
   }
 
@@ -96,20 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
     resetTimer();
   }
 
-  // 3. Event Listeners
-  nextBtn.addEventListener("click", () => {
-    nextSlide();
-    resetTimer();
-  });
+  nextBtn.addEventListener("click", () => { nextSlide(); resetTimer(); });
+  prevBtn.addEventListener("click", () => { prevSlide(); resetTimer(); });
 
-  prevBtn.addEventListener("click", () => {
-    prevSlide();
-    resetTimer();
-  });
-
-  // 4. Auto-play Logic
   function startTimer() {
-    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5s
+    slideInterval = setInterval(nextSlide, 5000);
   }
 
   function resetTimer() {

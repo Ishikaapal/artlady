@@ -287,86 +287,70 @@ section {
 /* ===============================
    HERO SLIDER
 ================================ */
-
 .hero-slider-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 92vh; /* Full screen height */
+  overflow: hidden; /* Black background for contain letterboxing */
+}
+
+.slider-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.slider-container {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1); /* Smooth transition */
+}
+
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
-/* Centered slider box */
-.slider-container {
-  position: relative;
+.hero-slide img {
   width: 100%;
-  height:100%;
-}
-
-/* Slides */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: scale(1.1);
-  transition:
-    opacity 0.8s ease,
-    transform 1.2s ease;
-  z-index: 1;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
-}
-
-.slide-image-wrapper {
-  width: 100%;
-  height: auto;
-}
-
-.slide-bg-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Controls */
-.slider-controls {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1.2rem;
-  z-index: 10;
+  height: 100%;
+  object-fit:fill; /* Keeps image whole. Use 'cover' if you want no gaps */
   pointer-events: none;
 }
 
+/* Controls & Indicators */
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 10;
+  pointer-events: none; /* Allows clicking through to the image if needed */
+}
+
 .nav-btn {
-  pointer-events: auto;
-  background: var(--bg-gradient);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  color: var(--text-color);
+  padding: 15px 20px;
   cursor: pointer;
-  font-size: 20px;
-  box-shadow: 0 4px 10px var(--boxShadow-color);
-  transition: all 0.3s ease;
-  pointer-events: auto;
-  z-index: 20;
+  border-radius: 50%;
+  backdrop-filter: blur(3px);
+  transition: 0.3s;
 }
 
 .nav-btn:hover {
-  background: var(--text-color);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.4);
 }
+
+.nav-btn, .slide-indicators {
+  pointer-events: auto; /* Re-enable clicking for buttons */
+}
+
 
 
 
