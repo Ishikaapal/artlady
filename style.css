@@ -1081,8 +1081,8 @@ section {
 }
 
 .portfolio-slide {
-  flex: 0 0 350px; /* IMPORTANT: Fix width and prevent shrinking */
-  height: 500px;
+  flex: 0 0 350px;
+  height: 500x; /* Increased height to accommodate text below */
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -1090,13 +1090,15 @@ section {
   transform: scale(0.9);
   transition: all 0.5s ease;
   cursor: pointer;
-  user-select: none;
-  background: #fff;
+  background: white;
+  display: flex;
+  flex-direction: column; /* Stacks image and text vertically */
+  align-items: center;
 }
 
 .portfolio-slide img {
   width: 100%;
-  height: 100%;
+  height: 90%; /* Leave room for text below */
   object-fit: cover;
   pointer-events: none;
 }
@@ -1104,48 +1106,37 @@ section {
 /* ACTIVE STATE */
 .portfolio-slide.active {
   opacity: 1;
-  transform: scale(1.1); /* Pop out effect */
+  transform: scale(1.1);
   z-index: 10;
-  box-shadow: 0 30px 60px var(--boxShadow-color);
 }
 
+/* THE TEXT CONTAINER (Formerly Overlay) */
 .slide-overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: calc(100% - 40px);
-  background: var(--background-color);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 16px;
+  /* Removed absolute positioning */
+  position: relative; 
+  width: 100%;
+  padding: 15px 4px;
+  text-align: center;
+  background-color: #e6e6e6;
   color: var(--text-color);
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 0; /* Hidden by default */
+  transform: translateY(10px);
   transition: 0.5s;
-  box-shadow: 0 30px 60px var(--boxShadow-color);
+  background: transparent; /* Removed background blur to look cleaner */
+  box-shadow: none; /* Removed shadow from text box */
 }
+/* Show text only when active */
 .portfolio-slide.active .slide-overlay {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.2s;
 }
-
 .overlay-title {
-  font-size: 22px;
-  margin: 10px 0 0;
+  padding: 4px;
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-color);
 }
-.overlay-btn {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-}
-
 /* CONTROLS */
 .portfolio-controls {
   display: flex;
