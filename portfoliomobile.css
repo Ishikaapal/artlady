@@ -1,0 +1,74 @@
+/* --- EVERY DEVICE MEDIA QUERIES --- */
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+    .container { padding: 20px 15px; }
+    .masonry-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 15px; 
+    }
+}
+
+/* Mobile Phones (Standard & Small) */
+@media (max-width: 768px) {
+    .hero { height: 60vh; } 
+    .subtitle {
+        letter-spacing: 0.4em; /* Prevents text from wrapping too early */
+        margin-bottom: 12px;
+    }
+    .glitch-text { font-size: clamp(2.5rem, 12vw, 4rem); }
+
+    .filter-container {
+        justify-content: flex-start; /* Alignment must be start for scrolling to work */
+        padding: 12px 15px;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .filter-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(5,5,5,1), transparent);
+        pointer-events: none; /* Allows clicking buttons underneath */
+        z-index: 2;
+    }
+    /* FIX: Force 2 columns for all mobile devices */
+    .masonry-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 12px; 
+        grid-auto-rows: 8px; /* Slightly larger base unit for mobile stability */
+    }
+
+    .grid-item { border-radius: 8px; } /* Slightly softer corners for mobile cards */
+
+    .lb-nav { display: none; } 
+    .lb-container { width: 95%; height: 70%; }
+}
+
+/* Specific Tweak for Very Small Devices (Under 400px) */
+@media (max-width: 400px) {
+    .glitch-text { font-size: 2.2rem; }
+    
+    .masonry-grid {
+        /* Still 2 columns, but tighter gap to maximize image space */
+        gap: 8px;
+        grid-auto-rows: 6px; 
+    }
+    
+    .subtitle {
+        font-size: 9px;
+        letter-spacing: 0.3em;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art work Lady</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+
+    <!-- navbar  -->
+    <nav class="ip_navbar">
+      <a href="#" class="logo">
+        <img src="assets/logo.png" alt="Logo" />
+      </a>
+
+      <ul class="ip_nav_links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#whyUs">Why Us</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li class="mobile-btn">
+          <a href="#"> Order Now </a>
+          <a onclick="openAuth('register')"> Get Started </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#"> Order Now</a>
+        <button onclick="openAuth('register')">Get Started</button>
+      </div>
+
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+
+    
+
+    <!-- hero section  -->
+    <div class="hero-slider-section" id="home" aria-label="Hero Image Slider">
+  <div class="slider-wrapper">
+    <div class="slider-container" id="sliderContainer">
+      <div class="hero-slide">
+        <img src="assets/2.png" alt="Abstract vector art background" loading="eager" />
+      </div>
+      <div class="hero-slide">
+        <img src="assets/embImg.jpeg" alt="Detailed embroidery work" />
+      </div>
+      <div class="hero-slide">
+        <img src="assets/3.png" alt="Trusted Supplier" />
+      </div>
+      <div class="hero-slide">
+        <img src="assets/4.png" alt="Order Banner" />
+      </div>
+      </div>
+  </div>
+
+  <div class="slider-controls">
+    <button class="nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+    <div class="slide-indicators"></div>
+    <button class="nav-btn next" aria-label="Next Slide">&#10095;</button>
+  </div>
+</div>
+
+    <!-- vector section -->
+    <div id="vectorSection">
+      <div class="vectorHeader">
+        <h2>Vector Transformation</h2>
+        <p>Where elegance meets flawless vector craftsmanship.</p>
+      </div>
+
+      <div class="comparison-row">
+        <div class="comparison-container">
+          <img src="assets/Vector1After.jpg" alt="After" class="after-img" />
+
+          <div class="img-overlay">
+            <img
+              src="assets/Vector1After.jpg"
+              alt="Before"
+              class="before-img"
+            />
+          </div>
+
+          <div class="label label-before">Before</div>
+          <div class="label label-after">After</div>
+
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+        <div class="comparison-container">
+          <img src="assets/Vector3After.jpg" alt="After" class="after-img" />
+
+          <div class="img-overlay">
+            <img
+              src="assets/Vector3After.jpg"
+              alt="Before"
+              class="before-img"
+            />
+          </div>
+
+          <div class="label label-before">Before</div>
+          <div class="label label-after">After</div>
+
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+        <div class="comparison-container">
+          <img src="assets/VecT3.jpeg" alt="After" class="after-img" />
+
+          <div class="img-overlay">
+            <img
+              src="assets/VecT3.jpeg"
+              alt="Before"
+              class="before-img"
+            />
+          </div>
+
+          <div class="label label-before">Before</div>
+          <div class="label label-after">After</div>
+
+          <input type="range" min="0" max="100" value="50" class="slider" />
+          <div class="slider-button"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- about us section  -->
+    <section class="about-advanced" id="about">
+      <div class="about-container">
+        <div class="about-content">
+          <span class="sub-badge">Global Creative Partner</span>
+          <h2 class="about-headline">
+            Artwork Lady – Precision Design, Global Reach
+          </h2>
+
+          <p class="about-description">
+            At <strong>Artwork Lady</strong>, we’re more than a design
+            firm—we’re a creative partner trusted by businesses worldwide. With
+            collaborators across
+            <strong>Europe, USA, Australia, and beyond</strong>, we deliver
+            fast, accurate, and impactful design services tailored for the
+            promotional product industry.
+          </p>
+          <p class="about-description sm">
+            Our commitment to quality and speed has earned the confidence of
+            leading brands.
+          </p>
+
+          <div class="separator-line"></div>
+
+          <h3 class="list-title">What We Do Best</h3>
+
+          <ul class="best-list">
+            <li class="best-item active" onmouseenter="switchAboutImage(0)">
+              <div class="item-icon">✒️</div>
+              <div class="item-text">
+                <h4>Vector Art Conversion</h4>
+                <p>Clean, scalable artwork ready for any medium.</p>
+              </div>
+            </li>
+
+            <li class="best-item" onmouseenter="switchAboutImage(1)">
+              <div class="item-icon">📦</div>
+              <div class="item-text">
+                <h4>Product Visuals</h4>
+                <p>Realistic mockups that help products sell themselves.</p>
+              </div>
+            </li>
+
+            <li class="best-item" onmouseenter="switchAboutImage(2)">
+              <div class="item-icon">✨</div>
+              <div class="item-text">
+                <h4>Graphic Design</h4>
+                <p>Bold, memorable visuals that strengthen brand identity.</p>
+              </div>
+            </li>
+
+            <li class="best-item" onmouseenter="switchAboutImage(3)">
+              <div class="item-icon">💻</div>
+              <div class="item-text">
+                <h4>Website Development</h4>
+                <p>Modern, responsive sites that connect businesses.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-visuals">
+          <div class="image-frame">
+            <img
+              src="assets/vector About.png"
+              class="about-img active"
+              alt="Vector Art"
+            />
+            <img
+              src="assets/aboutus1.png"
+              class="about-img"
+              alt="Product Visuals"
+            />
+            <img
+              src="assets/graphic About.png"
+              class="about-img"
+              alt="Graphic Design"
+            />
+            <img
+              src="assets/web D About.png"
+              class="about-img"
+              alt="Web Development"
+            />
+
+            <div class="floating-badge">
+              <span>100%</span>
+              <small>Quality</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- why us section  -->
+    <section class="why-us-section" id="whyUs">
+      <div class="section-header unified-header">
+        <h2>Why Choose Us</h2>
+        <p>
+          Trusted globally for speed, creativity, and precision-driven design
+          excellence.
+        </p>
+      </div>
+      <div class="container">
+        <div class="column">
+          <div class="feature-item item-1">
+            <div class="icon-circle">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <h3>Global Partnerships</h3>
+            <p>
+              Serving clients across continents with seamless collaboration and
+              international standards.
+            </p>
+          </div>
+
+          <div class="feature-item item-3">
+            <div class="icon-circle">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Speed & Accuracy</h3>
+            <p>
+              Designs delivered quickly without compromising quality. We value
+              your time.
+            </p>
+          </div>
+        </div>
+
+        <div class="center-visual">
+          <div class="pulse-ring"></div>
+          <div class="center-circle">
+            <img src="assets/why.png" alt="Why choose us" />
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="feature-item item-2">
+            <div class="icon-circle">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3>Trusted by Leaders</h3>
+            <p>
+              Proven track record with respected brands and industry giants.
+            </p>
+          </div>
+
+          <div class="feature-item item-4">
+            <div class="icon-circle">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Creative Excellence</h3>
+            <p>
+              Designs that blend artistry with business impact to skyrocket your
+              brand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- services section  -->
+
+    <section class="ip_core-services" id="services">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+
+      <div class="ip_container">
+        <div class="section-header unified-header">
+          <h2>Our Core Services</h2>
+          <p style="color: black;">
+            At <strong>ArtworkLady</strong>, we blend technical precision with
+            creative flair. Empowering brands with pixel-perfect assets and
+            strategic positioning.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card" data-step="01">
+            <div class="card-inner">
+              <div class="icon-box">✒️</div>
+              <h3>Vector Art <br />Conversion</h3>
+              <p>
+                Scalable, print-ready graphics engineered for perfect screen
+                printing results.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="02">
+            <div class="card-inner">
+              <div class="icon-box">🧵</div>
+              <h3>Embroidery <br />Digitizing</h3>
+              <p>
+                Production-grade stitch files optimized for thread count and
+                fabric stability.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="03">
+            <div class="card-inner">
+              <div class="icon-box">🧊</div>
+              <h3>Product <br />Visuals</h3>
+              <p>
+                Hyper-realistic mockups that allow customers to visualize the
+                final product instantly.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="04">
+            <div class="card-inner">
+              <div class="icon-box">🎨</div>
+              <h3>Creative <br />Design</h3>
+              <p>
+                Compelling brochures, flyers, and branding assets that tell your
+                unique story.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="05">
+            <div class="card-inner">
+              <div class="icon-box">💻</div>
+              <h3>Web Dev <br />& SEO</h3>
+              <p>
+                High-performance e-commerce stores built for speed, SEO, and
+                sales conversion.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card" data-step="06">
+            <div class="card-inner">
+              <div class="icon-box">🛡️</div>
+              <h3>Brand <br />Identity</h3>
+              <p>
+                Conceptual logo design that creates a memorable and lasting
+                business footprint.
+              </p>
+              <a href="#" class="btn-text"
+                >Discover <span class="arr">&nearr;</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- portfolio section  -->
+
+    <div class="portfolio-section" id="portfolio">
+      
+      <div class="section-header unified-header" style="padding-bottom: 16px;">
+        <h2>We Create. We Execute. We Deliver.</h2>
+      </div>      
+
+      <div class="portfolio-slider">
+        <div class="slider-track" id="sliderTrack">
+          <div class="portfolio-slide" data-index="0">
+            <img src="assets/3DRandering.png" alt="3D Randering" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">3D Randering</h3>
+            </div>
+          </div>
+          <div class="portfolio-slide" data-index="1">
+            <img src="assets/PosterMaking.png" alt="PosterMaking" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">Poster Making</h3>
+            </div>
+          </div>
+          <div class="portfolio-slide" data-index="2">
+            <img src="assets/Embroidary.png" alt="embroidery" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">Embroidary</h3>
+            </div>
+          </div>
+          <div class="portfolio-slide" data-index="3">
+            <img src="assets/Printing.png" alt="Printing" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">T-shirt Design </h3>
+            </div>
+          </div>
+          <div class="portfolio-slide" data-index="4">
+            <img src="assets/ProductVisuals.png" alt="Product Visuals" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">Product Visuals</h3>
+            </div>
+          </div>
+          <div class="portfolio-slide" data-index="5">
+            <img src="assets/VectorArt.png" alt="Vector Art" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">Vector Art</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-controls">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="pagination-numbers">
+          <span class="p-num active">1</span>
+          <span class="p-num">2</span>
+          <span class="p-num">3</span>
+          <span class="p-num">4</span>
+          <span class="p-num">5</span>
+          <span class="p-num">6</span>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- footer section  -->
+
+    <footer class="celestial-footer">
+  <div class="footer-bg">
+    <div class="star star-1"></div>
+    <div class="star star-2"></div>
+    <div class="star star-3"></div>
+    <div class="star star-4"></div>
+  </div>
+
+  <div class="glow-line"></div>
+
+  <div class="footer-container">
+    <div class="footer-content">
+      
+      <div class="footer-section brand-col reveal">
+        <h2 class="brand-title">Let's<br><span>Connect</span></h2>
+        <p class="brand-tagline">
+          Transforming ideas into digital masterpieces.<br>
+          <strong>Design • Digitize • Deliver</strong>
+        </p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/vector_artworklady/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/artworklady" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/13756146/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section reveal">
+        <h3 class="column-heading">Services</h3>
+        <ul class="footer-links">
+          <li><a href="#">Vector Art Services</a></li>
+          <li><a href="#">Embroidery Digitizing</a></li>
+          <li><a href="#">Graphic Design</a></li>
+          <li><a href="#">Logo Branding</a></li>
+          <li><a href="#">Web Development</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section reveal">
+        <h3 class="column-heading">Explore</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Our Work</a></li>
+          <li><a href="#whyUs">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section reveal">
+        <h3 class="column-heading">Connect</h3>
+        <div class="contact-info">
+          <a href="tel:+919825072503" class="contact-link">
+            <i class="fas fa-phone-alt"></i>
+            <strong>(+91) 9825072503</strong>
+          </a>
+          <a href="mailto:artwork@artworklady.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            <strong>artwork@artworklady.com</strong>
+          </a>
+          <a href="mailto:bhavin@artworklady.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            <strong>bhavin@artworklady.com</strong>
+          </a>
+          <a onclick="openAuth('register')" style="cursor: pointer;" class="contact-link">
+            <i class="fa-solid fa-user-plus"></i>
+            <strong>Register Now</strong>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Artwork Lady. All Rights Reserved.</p>
+  </div>
+</footer>
+
+    <!-- Register and Login  -->
+
+    <div id="auth-overlay" class="auth-overlay">
+      <div class="auth-card">
+        <span class="close-auth" onclick="closeAuth()">&times;</span>
+
+        <div class="card-left">
+          <div class="overlay-content">
+            <h1>
+              Getting started with Vector Conversion or Embroidery Digitizing is
+              simple
+            </h1>
+            <p>
+              We’ll take care of the rest—delivering precise, production-ready
+              files with our signature speedy turnaround.
+            </p>
+            <img src="assets/logo.png" alt="logo" class="card-left-img" />
+          </div>
+        </div>
+
+        <div class="card-right">
+          <div id="register-section">
+            <h2>Create Account</h2>
+            <form class="auth-form">
+              <div class="input-group">
+                <input type="text" placeholder="Full Name" required />
+              </div>
+              <div class="input-group">
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <div class="input-row">
+                <div class="input-group">
+                  <input type="password" placeholder="Password" required />
+                </div>
+                <div class="input-group">
+                  <input
+                    type="password"
+                    placeholder="Repeat Password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="input-group">
+                <input type="text" placeholder="Company Name" />
+              </div>
+              <div class="input-row">
+                <div class="input-group">
+                  <select required>
+                    <option value="" disabled selected>Select Country</option>
+                    <option value="usa">USA</option>
+                    <option value="india">India</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <input type="tel" placeholder="Contact No." />
+                </div>
+              </div>
+              <div class="input-group">
+                <select required>
+                  <option value="" disabled selected>
+                    How did you hear about us?
+                  </option>
+                  <option value="social">Social Media</option>
+                  <option value="friend">Search engine</option>
+                  <option value="friend">Email flyer</option>
+                  <option value="friend">others</option>
+                </select>
+              </div>
+
+              <button type="submit">Sign Up</button>
+            </form>
+            <p class="switch-text">
+              Already Have an account?
+              <span onclick="switchForm('login')">Sign in</span>
+            </p>
+          </div>
+
+          <div id="login-section" style="display: none">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Please enter your details.</p>
+            <form class="auth-form">
+              <div class="input-group">
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <div class="input-group">
+                <input type="password" placeholder="Password" required />
+              </div>
+              <button type="submit">Sign In</button>
+            </form>
+            <p class="switch-text">
+              Don't have an account?
+              <span onclick="switchForm('register')">Sign Up</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script src="script.js"></script>
+  </body>
+</html>

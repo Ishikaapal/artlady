@@ -1,0 +1,394 @@
+/* =====================================
+   MOBILE RESPONSIVE (<= 768px)
+===================================== */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 20px 5%;
+  }
+
+  section {
+    scroll-margin-top: 8vh;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .ip_navbar {
+    height: 8vh;
+    padding: 0 16px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .ip_nav_links {
+    position: fixed;
+    top: 8vh;
+    left: -100%;
+    width: 70%;
+    height: calc(100vh - 8vh);
+    background: var(--bg-gradient);
+    padding-top: 5%;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
+    transition: left 0.4s ease;
+    z-index: 999;
+    padding-left: 5%;
+  }
+  .ip_nav_links li a {
+    font-size: 24px;
+  }
+  .ip_nav_links li a::before {
+    display: block;
+  }
+  .ip_nav_links.active {
+    left: 0;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .mobile-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* ---------- HERO SLIDER ---------- */
+  .hero-slider-section {
+    height: 24vh;
+    min-height: 240px;
+  }
+
+.slider-controls {
+    padding: 0 10px; /* Bring buttons closer to edges */
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.4); /* Higher opacity for visibility */
+  }
+
+  .slide-indicators {
+    bottom: 15px; /* Pull indicators up slightly */
+    gap: 8px;
+  }
+
+  /* Vector Section */
+  .vectorHeader h2 {
+    font-size: 2rem;
+  }
+  .vectorHeader p {
+    font-size: 1rem;
+  }
+
+  .comparison-row {
+    flex-direction: column;
+  }
+
+  /* ---------- ABOUT SECTION ---------- */
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-headline {
+    font-size: 28px;
+  }
+
+  .about-visuals {
+    height: 350px;
+  }
+
+  /* ---------- SERVICES SECTION ---------- */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .ip_services_header h2 {
+    font-size: 2.2rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.8rem;
+  }
+
+  /* ---------- WHY CHOOSE US ---------- */
+  .container {
+    grid-template-columns: 1fr;
+    padding-top: 60px;
+  }
+
+  .section-header {
+    position: relative;
+    top: 0;
+    margin-bottom: 40px;
+  }
+
+  .column {
+    min-height: auto;
+    gap: 30px;
+  }
+
+  .center-visual {
+    width: 280px;
+    height: 280px;
+    margin: 40px auto;
+  }
+
+  /* ---------- PORTFOLIO ---------- */
+
+  .portfolio-section{
+    scroll-margin-top: 24px;
+  }
+ 
+  .portfolio-header{
+   height: 15vh;
+   margin-top: 24px;
+   
+  }
+  .portfolio-header h2{
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .portfolio-slider {
+    height: auto;
+  }
+
+  .portfolio-slide {
+    flex: 0 0 250px;
+    height: 350px;
+  }
+  .portfolio-slide img {
+  height: 80%; /* Leave room for text below */
+}
+
+  .portfolio-controls {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer-content {
+    grid-template-columns: 1fr; /* Single column stack */
+    text-align: center;
+    gap: 40px;
+  }
+
+  .brand-col,
+  .contact-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the logo and contact boxes */
+  }
+
+  .social-orbit {
+    justify-content: center;
+  }
+
+  .link-list a {
+    justify-content: center; /* Centers links in the middle */
+  }
+
+  .link-list a::before {
+    display: none; /* Optional: Remove arrow on mobile to save space */
+  }
+
+  .contact-item {
+    justify-content: flex-start; /* Keep text left-aligned inside the centered box */
+    width: 100%;
+    max-width: 300px; /* Prevents contact boxes from being too wide */
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ---------- AUTH POPUP ---------- */
+  .auth-card {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    border-radius: 20px;
+  }
+  .card-left {
+    display: none;
+  }
+
+  .card-right {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .card-left-img {
+    height: 160px;
+    margin-top: 20px;
+  }
+
+  
+.unified-header {
+  margin: 0 auto 2rem;
+}
+
+
+
+/* Main title */
+.unified-header h2 {
+  font-size: 2rem;
+}
+
+}
+
+/* =====================================
+   TABLET RESPONSIVE (768px – 1024px)
+===================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --container-padding: 24px 6%;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .ip_navbar {
+    height: 75px;
+    padding: 0 4%;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .ip_nav_links {
+    gap: 24px;
+  }
+
+  .ip_nav_links li a {
+    font-size: 1rem;
+  }
+
+  .nav-actions {
+    gap: 20px;
+  }
+
+  .ip_order_btn {
+    width: 120px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  /* ---------- HERO SLIDER ---------- */
+  .hero-slider-section {
+    height: 80vh;
+  }
+
+  /* ---------- ABOUT SECTION ---------- */
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .about-headline {
+    font-size: 32px;
+  }
+
+  .about-visuals {
+    height: 420px;
+  }
+
+  /* ---------- SERVICES SECTION ---------- */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 24px;
+  }
+
+  .ip_services_header h2 {
+    font-size: 2.8rem;
+  }
+
+  .service-card {
+    padding: 2.5rem 2rem;
+  }
+
+  /* ---------- WHY CHOOSE US ---------- */
+  .container {
+    grid-template-columns: 1fr;
+    padding-top: 80px;
+  }
+
+  .section-header {
+    position: relative;
+    top: 0;
+    margin-bottom: 50px;
+  }
+
+  .column {
+    min-height: auto;
+    gap: 35px;
+  }
+
+  .center-visual {
+    width: 320px;
+    height: 320px;
+    margin: 50px auto;
+  }
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio-slide {
+    /* Use a fixed width that fits mobile screens well */
+    flex: 0 0 280px;
+    height: 400px;
+  }
+
+  /* Reduce gap for mobile to keep more of the side slides visible */
+  .slider-track {
+    gap: 15px;
+  }
+
+  .portfolio-controls {
+    padding: 0 5%;
+    flex-direction: column; /* Stack progress bar and numbers if needed */
+    gap: 15px;
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer-content {
+    grid-template-columns: 1fr 1fr; /* Two columns for tablets */
+    gap: 30px;
+  }
+
+  .footer-logo {
+    grid-column: span 2;
+    text-align: center;
+  }
+
+  .social-orbit {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ---------- AUTH POPUP ---------- */
+  .auth-card {
+    width: 90%;
+    height: 600px;
+  }
+}

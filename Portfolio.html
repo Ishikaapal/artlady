@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="portfoliomobile.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="subtitle">Art Work Lady</span>
+            <h1 class="glitch-text" data-text="PORTFOLIO">PORTFOLIO</h1>
+            <div class="scroll-indicator"></div>
+        </div>
+    </header>
+
+    <section class="filter-wrapper" id="gallery">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="vector">Vector Art Services</button>
+            <button class="filter-btn" data-filter="embroidery">Embroidery Digitizing</button>
+            <button class="filter-btn" data-filter="graphic">Graphic Design Services</button>
+            <button class="filter-btn" data-filter="logo">Logo Design</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="mobile">Mobile App Development</button>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="masonry-grid" id="masonry-grid">
+            <div class="grid-item scroll-reveal" data-category="vector">
+                <div class="card-inner">
+                    <img src="assets/vector/vt1.jpg" alt="Vector Art 1">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="vector">
+                <div class="card-inner">
+                    <img src="assets/vector/vt2.jpg" alt="Vector Art 2">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="vector">
+                <div class="card-inner">
+                    <img src="assets/vector/vt3.jpg" alt="Vector Art 3">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="vector">
+                <div class="card-inner">
+                    <img src="assets/vector/vt4.jpg" alt="Vector Art 4">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="graphic">
+                <div class="card-inner">
+                    <img src="assets/graphic/gds1.jpg" alt="Graphic">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="graphic">
+                <div class="card-inner">
+                    <img src="assets/graphic/gds1.jpg" alt="Graphic">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="graphic">
+                <div class="card-inner">
+                    <img src="assets/graphic/gds2.jpg" alt="Graphic">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="graphic">
+                <div class="card-inner">
+                    <img src="assets/graphic/gds3.jpg" alt="Graphic">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="graphic">
+                <div class="card-inner">
+                    <img src="assets/graphic/gds4.jpg" alt="Graphic">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="embroidery">
+                <div class="card-inner">
+                    <img src="assets/embroidery/em1.jpeg" alt="embroidery">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="embroidery">
+                <div class="card-inner">
+                    <img src="assets/embroidery/em2.jpeg" alt="embroidery">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="embroidery">
+                <div class="card-inner">
+                    <img src="assets/embroidery/em3.png" alt="embroidery">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="embroidery">
+                <div class="card-inner">
+                    <img src="assets/embroidery/em4.jpeg" alt="embroidery">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="embroidery">
+                <div class="card-inner">
+                    <img src="assets/embroidery/em5.jpeg" alt="embroidery">
+                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="logo">
+                <div class="card-inner">
+                    <img src="assets/logo/lg1.jpeg" alt="logo">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="logo">
+                <div class="card-inner">
+                    <img src="assets/logo/lg3.jpg" alt="logo">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="logo">
+                <div class="card-inner">
+                    <img src="assets/logo/lg2.png" alt="logo">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="logo">
+                <div class="card-inner">
+                    <img src="assets/logo/lg4.png" alt="logo">                    
+                </div>
+            </div>
+
+            <div class="grid-item scroll-reveal" data-category="web">
+                <div class="card-inner">
+                    <img src="assets/webDevelopment/wd1.png" alt="web">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="web">
+                <div class="card-inner">
+                    <img src="assets/webDevelopment/wd2.png" alt="web">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="web">
+                <div class="card-inner">
+                    <img src="assets/webDevelopment/wd3.png" alt="web">                    
+                </div>
+            </div>
+            <div class="grid-item scroll-reveal" data-category="web">
+                <div class="card-inner">
+                    <img src="assets/webDevelopment/wd4.png" alt="web">                    
+                </div>
+            </div>
+
+            </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lb-close">&times;</div>
+        <div class="lb-nav lb-prev">&#8592;</div>
+        <div class="lb-container">
+            <img id="lightbox-img" src="" alt="View">
+            <div class="lb-caption"></div>
+        </div>
+        <div class="lb-nav lb-next">&#8594;</div>
+    </div>
+
+    
+
+    <script src="portfolio.js"></script>
+</body>
+</html>
