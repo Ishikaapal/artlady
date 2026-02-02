@@ -108,15 +108,12 @@ section {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
-.logo:hover {
-  transform: scale(1.05);
-}
 .logo:active {
   transform: scale(0.95);
 }
 
 .logo img {
-  height: 70px;
+  height: 64px;
   width: auto;
 }
 
@@ -287,86 +284,93 @@ section {
 /* ===============================
    HERO SLIDER
 ================================ */
-
 .hero-slider-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 92vh; /* Full screen height */
+  overflow: hidden; /* Black background for contain letterboxing */
+}
+
+.slider-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.slider-container {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1); /* Smooth transition */
+}
+
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
-/* Centered slider box */
-.slider-container {
-  position: relative;
+.hero-slide img {
   width: 100%;
-  height:100%;
-}
-
-/* Slides */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: scale(1.1);
-  transition:
-    opacity 0.8s ease,
-    transform 1.2s ease;
-  z-index: 1;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
-}
-
-.slide-image-wrapper {
-  width: 100%;
-  height: auto;
-}
-
-.slide-bg-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Controls */
-.slider-controls {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1.2rem;
-  z-index: 10;
+  height: 100%;
+  object-fit:fill; /* Keeps image whole. Use 'cover' if you want no gaps */
   pointer-events: none;
 }
 
+/* Controls & Indicators */
+/* Base Styles (Desktop) */
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%); /* Perfectly centers buttons vertically */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+.nav-btn, 
+.slide-indicators {
+  pointer-events: auto; /* Re-enables clicking */
+}
+
 .nav-btn {
-  pointer-events: auto;
-  background: var(--bg-gradient);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  color: var(--text-color);
+  width: 50px;  /* Fixed width for perfect circles */
+  height: 50px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 20px;
-  box-shadow: 0 4px 10px var(--boxShadow-color);
+  border-radius: 50%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px); /* Safari support */
   transition: all 0.3s ease;
-  pointer-events: auto;
-  z-index: 20;
+  font-size: 1.2rem;
 }
 
 .nav-btn:hover {
-  background: var(--text-color);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
+
+.slide-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+
+
 
 
 
@@ -512,12 +516,12 @@ section {
   margin: 0 0 5px 0;
   font-size: 16px;
   font-weight: 700;
-  color: #222;
+  color: var(--text-color);
 }
 
 .item-text p {
   margin: 0;
-  font-size: 13px;
+  font-size: 16px;
   color: #666;
   line-height: 1.4;
 }
@@ -773,7 +777,7 @@ section {
 }
 
 .service-card:hover .icon-box {
-  transform: scale(1.2) rotate(-5deg);
+  transform: scale(1.05) rotate(-2deg);
 }
 
 .service-card h3 {
@@ -938,20 +942,20 @@ section {
 
 /* Individual Colors based on position */
 .item-1 .icon-circle {
-  background-color: var(--color-1);
-  box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+  background-color: var(--text-color);
+  box-shadow: 0 10px 25px var(--boxShadow-color);
 }
 .item-2 .icon-circle {
-  background-color: var(--color-2);
-  box-shadow: 0 10px 25px rgba(52, 73, 94, 0.4);
+  background-color: var(--text-color);
+  box-shadow: 0 10px 25px var(--boxShadow-color);
 }
 .item-3 .icon-circle {
-  background-color: var(--color-3);
-  box-shadow: 0 10px 25px rgba(26, 188, 156, 0.4);
+  background-color: var(--text-color);
+  box-shadow: 0 10px 25px var(--boxShadow-color);
 }
 .item-4 .icon-circle {
-  background-color: var(--color-4);
-  box-shadow: 0 10px 25px rgba(255, 118, 117, 0.4);
+  background-color: var(--text-color);
+  box-shadow: 0 10px 25px var(--boxShadow-color);
 }
 
 .feature-item h3 {
@@ -963,22 +967,13 @@ section {
   color: inherit;
 }
 
-.item-1 h3 {
-  color: var(--color-1);
-}
-.item-2 h3 {
-  color: var(--color-2);
-}
-.item-3 h3 {
-  color: var(--color-3);
-}
-.item-4 h3 {
-  color: var(--color-4);
+.item-1 h3,.item-2 h3,.item-3 h3,.item-4 h3   {
+  color: var(--text-color);
 }
 
 .feature-item p {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color:#0000009c;
   line-height: 1.6;
   max-width: 280px;
 }
@@ -1043,134 +1038,161 @@ section {
   transform: translateY(0) scale(1) !important;
 }
 
-/* ===============================
-   PORTFOLIO SECTION (FIXED GAP)
-================================ */
-.portfolio-section {
+
+
+portfolio-section {
   padding: var(--container-padding);
-  background: var(--bg-gradient);
-  overflow: hidden; /* Hide overflow from container */
+  background:var(--bg-gradient);
+  overflow: hidden; 
   position: relative;
   max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .portfolio-header {
-  text-align: center;
-  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px; /* Reduced from 150px to better fit 100vh */
+  margin-bottom: 20px;
 }
+
 .portfolio-header h2 {
   font-size: 42px;
   font-weight: 800;
-  color: linear-gradient(45deg, var(--text-color), var(--text-primary));
+  /* Fixed the gradient text logic */
+  background: linear-gradient(45deg, var(--text-color), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .portfolio-slider {
   width: 100%;
-  height: 600px;
+  height: 550px;
   display: flex;
-  align-items: center;
-  /* We don't hide overflow here so elements can slide in, 
-       but parent .portfolio-section hides it */
+  align-items: center; 
+  overflow: hidden;/* Centers the active slide vertically */
 }
 
 .slider-track {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   will-change: transform;
-  /* Track transform is handled by JS */
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  /* JS should calculate the offset to keep the .active slide centered */
 }
 
 .portfolio-slide {
   flex: 0 0 350px;
-  height: 500x; /* Increased height to accommodate text below */
+  height: 480px; 
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  opacity: 0.5;
-  transform: scale(0.9);
-  transition: all 0.5s ease;
+  opacity: 0.4; /* Slightly lower for more contrast with active */
+  transform: scale(0.85); /* Slightly smaller for more dramatic focus */
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
   background: white;
   display: flex;
-  flex-direction: column; /* Stacks image and text vertically */
+  flex-direction: column; 
   align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .portfolio-slide img {
   width: 100%;
-  height: 90%; /* Leave room for text below */
-  object-fit: cover;
+  height: 80%; /* Adjusted to give text more breathing room */
+  object-fit: contain;
+  padding: 20px;
   pointer-events: none;
 }
 
 /* ACTIVE STATE */
 .portfolio-slide.active {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05); /* Zoom in effect */
   z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* THE TEXT CONTAINER (Formerly Overlay) */
+/* THE TEXT CONTAINER */
 .slide-overlay {
-  /* Removed absolute positioning */
   position: relative; 
   width: 100%;
-  padding: 15px 4px;
+  height: 20%;
+  padding: 10px 20px;
   text-align: center;
-  background-color: #e6e6e6;
   color: var(--text-color);
-  opacity: 0; /* Hidden by default */
-  transform: translateY(10px);
-  transition: 0.5s;
-  background: transparent; /* Removed background blur to look cleaner */
-  box-shadow: none; /* Removed shadow from text box */
+  opacity: 0; 
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  background: transparent; 
 }
+
 /* Show text only when active */
 .portfolio-slide.active .slide-overlay {
   opacity: 1;
   transform: translateY(0);
+  transition-delay: 0.2s; /* Text appears slightly after scale */
 }
+
 .overlay-title {
-  padding: 4px;
-  font-size: 24px;
+  font-size: 26px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   color: var(--text-color);
 }
+
 /* CONTROLS */
 .portfolio-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 10%;
-  margin-top: 30px;
+  margin-top: 40px;
 }
+
 .progress-bar {
   width: 60%;
   height: 4px;
   background: var(--text-hover);
   position: relative;
   border-radius: 2px;
+  overflow: hidden;
 }
+
 .progress-fill {
   position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
   background: var(--text-color);
   width: 0%;
-  transition: width 0.5s;
+  transition: width 0.5s ease;
 }
+
 .pagination-numbers {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 20px;
 }
+
 .p-num {
   font-weight: 600;
+  font-size: 16px;
   color: var(--text-hover);
   cursor: pointer;
+  transition: all 0.3s ease;
 }
+
 .p-num.active {
   color: var(--text-color);
-  font-size: 20px;
+  font-size: 24px; /* Pop the active number */
 }
 
 /* ===============================
@@ -1376,12 +1398,17 @@ section {
   gap: 20px;
 }
 
+.contact-info :hover{
+  transform: translateY(-3px);
+}
+
 .contact-link {
   display: flex;
   align-items: center;
   gap: 15px;
   text-decoration: none;
 }
+
 
 .contact-link i {
   color: #8a2be2;
@@ -1461,7 +1488,7 @@ section {
   background: #fff;
   width: 1000px;
   max-width: 100%;
-  height: 650px;
+  height: 550px;
   display: flex;
   border-radius: 30px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
@@ -1590,7 +1617,7 @@ section {
 
 .unified-header {
   text-align: center;
-  max-width: 720px;
+  max-width: 1280px;
   margin: 0 auto 4rem;
   position: relative;
 }
