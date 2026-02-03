@@ -42,7 +42,7 @@ body {
     /* Added a dark tint over the image to help white text pop */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                 radial-gradient(circle at center, rgba(0,242,255,0.08) 0%, transparent 70%),
-                url('assets/bg1.png') center/cover no-repeat;
+                url('assets/banners/portfolioHero.jpeg') center/cover no-repeat;
     
     /* The Blur Effect */
     filter: blur(6px); /* Adjust the pixels for more/less blur */
