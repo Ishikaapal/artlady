@@ -69,9 +69,7 @@
     padding: 0 10px; /* Bring buttons closer to edges */
   }
 
-  .hero-slide img {
-  object-fit: cover; 
-}
+
 
   .nav-btn {
     width: 35px;

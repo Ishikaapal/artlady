@@ -184,11 +184,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Auto Play setup
-  let slideInterval = setInterval(nextSlide, 5000);
+  let slideInterval = setInterval(nextSlide, 3000);
 
   function resetInterval() {
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 3000);
   }
 
   // Event Listeners
@@ -596,7 +596,7 @@ const initSliders = () => {
     const beforeImg = container.querySelector(".before-img");
 
     const updateSlider = () => {
-      const value = slider.value;
+      const value = slider.value; 
 
       // Move the "wall" from left to right
       overlay.style.width = `${value}%`;
@@ -616,3 +616,30 @@ const initSliders = () => {
 
 document.addEventListener("DOMContentLoaded", initSliders);
 
+/* ===============================
+   ABOUT SECTION IMAGE SWITCH
+================================ */
+
+function switchAboutImage(index) {
+  const items = document.querySelectorAll(".best-item");
+  const images = document.querySelectorAll(".about-img");
+
+  if (!items.length || !images.length) return;
+
+  // Remove active states
+  items.forEach((item) => item.classList.remove("active"));
+  images.forEach((img) => img.classList.remove("active"));
+
+  // Add active state
+  if (items[index]) items[index].classList.add("active");
+  if (images[index]) images[index].classList.add("active");
+}
+
+/* Optional: Mobile tap support (recommended) */
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".best-item");
+
+  items.forEach((item, index) => {
+    item.addEventListener("click", () => switchAboutImage(index));
+  });
+});
