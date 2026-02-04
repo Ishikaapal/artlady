@@ -126,59 +126,82 @@ function changeImage(index) {
   if (images[index]) images[index].classList.add("active");
 }
 
-/* ===============================
-   3. HERO SLIDER
-================================ */
-const heroSlides = document.querySelectorAll(".hero-slide");
-const heroDots = document.querySelectorAll(".dot");
-let currentHeroSlide = 0;
-let heroInterval;
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("sliderContainer");
+  const slides = document.querySelectorAll(".hero-slide");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
-function showHeroSlide(index) {
-  if (heroSlides.length === 0) return;
-  heroSlides.forEach((s) => s.classList.remove("active"));
-  heroDots.forEach((d) => d.classList.remove("active"));
+  let currentIndex = 0;
+  let isTransitioning = false;
+  const totalSlides = slides.length; // Includes the clone
+  const lastRealIndex = totalSlides - 1; 
 
-  if (index >= heroSlides.length) currentHeroSlide = 0;
-  else if (index < 0) currentHeroSlide = heroSlides.length - 1;
-  else currentHeroSlide = index;
+  function updateSlider() {
+    container.classList.remove("no-transition");
+    container.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
 
-  heroSlides[currentHeroSlide].classList.add("active");
-  if (heroDots.length > 0) heroDots[currentHeroSlide].classList.add("active");
-}
+  function nextSlide() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentIndex++;
+    updateSlider();
+  }
 
-function startHeroAutoPlay() {
-  clearInterval(heroInterval);
-  heroInterval = setInterval(() => {
-    showHeroSlide(currentHeroSlide + 1);
-  }, 5000);
-}
-function changeSlide(dir) {
-  clearInterval(heroInterval);
-  showHeroSlide(currentHeroSlide + dir);
-  startHeroAutoPlay();
-}
-function goToSlide(idx) {
-  clearInterval(heroInterval);
-  showHeroSlide(idx);
-  startHeroAutoPlay();
-}
+  function prevSlide() {
+    if (isTransitioning) return;
+    isTransitioning = true;
 
-if (heroSlides.length > 0) startHeroAutoPlay();
+    if (currentIndex <= 0) {
+      // Teleport to clone first, then slide back to last real image
+      container.classList.add("no-transition");
+      currentIndex = lastRealIndex;
+      container.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+      // Force a reflow for the browser
+      setTimeout(() => {
+        container.classList.remove("no-transition");
+        currentIndex--;
+        updateSlider();
+      }, 20);
+    } else {
+      currentIndex--;
+      updateSlider();
+    }
+  }
 
-function switchAboutImage(index) {
-  // 1. Get all list items and images
-  const listItems = document.querySelectorAll(".best-item");
-  const images = document.querySelectorAll(".about-img");
+  // Handle the "Ninja Reset" after the transition ends
+  container.addEventListener("transitionend", () => {
+    isTransitioning = false;
+    
+    // If we've reached the clone (last slide), jump back to the actual first slide
+    if (currentIndex === lastRealIndex) {
+      container.classList.add("no-transition");
+      currentIndex = 0;
+      container.style.transform = `translateX(0)`;
+    }
+  });
 
-  // 2. Remove 'active' class from all
-  listItems.forEach((item) => item.classList.remove("active"));
-  images.forEach((img) => img.classList.remove("active"));
+  // Auto Play setup
+  let slideInterval = setInterval(nextSlide, 5000);
 
-  // 3. Add 'active' class to the hovered index
-  if (listItems[index]) listItems[index].classList.add("active");
-  if (images[index]) images[index].classList.add("active");
-}
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  // Event Listeners
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetInterval();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetInterval();
+  });
+});
 
 // / * ==============
 // | why choose us section |
