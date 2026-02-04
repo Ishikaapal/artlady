@@ -318,7 +318,7 @@ section {
 .hero-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Professional standard: no stretching */
+  object-fit: fill; /* Professional standard: no stretching */
   pointer-events: none;
 }
 
