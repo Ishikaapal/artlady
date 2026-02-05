@@ -61,8 +61,8 @@
 
   /* ---------- HERO SLIDER ---------- */
   .hero-slider-section {
-    height: 24vh;
-    min-height: 240px;
+    height: 20vh;
+    min-height: 200px;
   }
 
 .slider-controls {
