@@ -1,0 +1,101 @@
+/* ===============================
+   HERO SLIDER
+================================ */
+.ip2026-hero-slider-section {
+  position: relative;
+  width: 100%;
+  height: 96vh;
+  overflow: hidden;
+}
+
+.ip2026-slider-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.ip2026-slider-container {
+  display: flex;
+  height: 100%;
+  /* Professional cubic-bezier for smooth acceleration/deceleration */
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+  will-change: transform;
+}
+
+/* Helper class to disable animation for the "ninja jump" */
+.no-transition {
+  transition: none !important;
+}
+
+.ip2026-hero-slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.ip2026-hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Professional standard: no stretching */
+  pointer-events: none;
+}
+
+/* Controls */
+.ip2026-slider-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ip2026-nav-btn {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  font-size: 1.5rem;
+}
+
+.ip2026-nav-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #000;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  /* ---------- HERO SLIDER ---------- */
+  .ip2026-hero-slider-section {
+    height: 20vh;
+    min-height: 200px;
+  }
+
+  .ip2026-slider-controls {
+    padding: 0 10px; /* Bring buttons closer to edges */
+  }
+
+  .ip2026-nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.4); /* Higher opacity for visibility */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ip2026-hero-slider-section {
+    height: 64vh;
+  }
+}

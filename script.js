@@ -3,8 +3,8 @@
 ================================ */
 /* Optimized Navbar Logic */
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".ip_nav_links");
+  const hamburger = document.querySelector(".ip2026_hamburger");
+  const navLinks = document.querySelector(".ip2026_nav_links");
   const body = document.body;
 
   // Helper to toggle state
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Close when clicking links or buttons
   const menuItems = document.querySelectorAll(
-    ".ip_nav_links a, .ip_nav_links button",
+    ".ip2026_nav_links a, .ip2026_nav_links button",
   );
   menuItems.forEach((item) => {
     item.addEventListener("click", closeMenu);
@@ -51,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("sliderContainer");
-  const slides = document.querySelectorAll(".hero-slide");
-  const prevBtn = document.querySelector(".nav-btn.prev");
-  const nextBtn = document.querySelector(".nav-btn.next");
+  const container = document.getElementById("ip2026-sliderContainer");
+  const slides = document.querySelectorAll(".ip2026-hero-slide");
+  const prevBtn = document.querySelector(".ip2026-nav-btn.ip2026-prev");
+  const nextBtn = document.querySelector(".ip2026-nav-btn.ip2026-next");
   const indicatorContainer = document.querySelector(".slide-indicators");
 
   let currentIndex = 0;
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   prevBtn.addEventListener("click", () => { prevSlide(); resetTimer(); });
 
   function startTimer() {
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 3000);
   }
 
   function resetTimer() {
@@ -113,329 +115,173 @@ document.addEventListener("DOMContentLoaded", () => {
   startTimer();
 });
 
-/* ===============================
-   2. WHY CHOOSE US
-================================ */
-const listItems = document.querySelectorAll(".feature-item");
-const images = document.querySelectorAll(".feature-image");
 
-function changeImage(index) {
-  listItems.forEach((item) => item.classList.remove("active"));
-  images.forEach((img) => img.classList.remove("active"));
-  if (listItems[index]) listItems[index].classList.add("active");
-  if (images[index]) images[index].classList.add("active");
+
+
+/* ===============================
+   VECTOR SECTION JS
+================================ */
+
+const initSliders = () => {
+  const containers = document.querySelectorAll(".ip2026-comparison-container");
+
+  containers.forEach((container) => {
+    const slider = container.querySelector(".ip2026-slider");
+    const overlay = container.querySelector(".ip2026-img-overlay");
+    const button = container.querySelector(".ip2026-slider-button");
+    const beforeImg = container.querySelector(".ip2026-before-img");
+
+    const updateSlider = () => {
+      const value = slider.value; 
+
+      // Move the "wall" from left to right
+      overlay.style.width = `${value}%`;
+      button.style.left = `${value}%`;
+
+      // IMPORTANT: Keep the blurred image fixed so it doesn't slide
+      beforeImg.style.width = `${container.offsetWidth}px`;
+    };
+
+    slider.addEventListener("input", updateSlider);
+
+    // Initial sync
+    updateSlider();
+    window.addEventListener("resize", updateSlider);
+  });
+};
+
+document.addEventListener("DOMContentLoaded", initSliders);
+
+/* ===============================
+   ABOUT SECTION IMAGE SWITCH
+================================ */
+
+function switchAboutImage(index) {
+  const items = document.querySelectorAll(".ip2026-best-item");
+  const images = document.querySelectorAll(".ip2026-about-img");
+
+  if (!items.length || !images.length) return;
+
+  // Remove active states
+  items.forEach((item) => item.classList.remove("ip2026-active"));
+  images.forEach((img) => img.classList.remove("ip2026-active"));
+
+  // Add active state
+  if (items[index]) items[index].classList.add("ip2026-active");
+  if (images[index]) images[index].classList.add("ip2026-active");
 }
 
+/* Optional: Mobile tap support */
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("sliderContainer");
-  const slides = document.querySelectorAll(".hero-slide");
-  const nextBtn = document.getElementById("nextBtn");
-  const prevBtn = document.getElementById("prevBtn");
+  const items = document.querySelectorAll(".ip2026-best-item");
 
-  let currentIndex = 0;
-  let isTransitioning = false;
-  const totalSlides = slides.length; // Includes the clone
-  const lastRealIndex = totalSlides - 1; 
-
-  function updateSlider() {
-    container.classList.remove("no-transition");
-    container.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-
-  function nextSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    currentIndex++;
-    updateSlider();
-  }
-
-  function prevSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    if (currentIndex <= 0) {
-      // Teleport to clone first, then slide back to last real image
-      container.classList.add("no-transition");
-      currentIndex = lastRealIndex;
-      container.style.transform = `translateX(-${currentIndex * 100}%)`;
-      
-      // Force a reflow for the browser
-      setTimeout(() => {
-        container.classList.remove("no-transition");
-        currentIndex--;
-        updateSlider();
-      }, 20);
-    } else {
-      currentIndex--;
-      updateSlider();
-    }
-  }
-
-  // Handle the "Ninja Reset" after the transition ends
-  container.addEventListener("transitionend", () => {
-    isTransitioning = false;
-    
-    // If we've reached the clone (last slide), jump back to the actual first slide
-    if (currentIndex === lastRealIndex) {
-      container.classList.add("no-transition");
-      currentIndex = 0;
-      container.style.transform = `translateX(0)`;
-    }
-  });
-
-  // Auto Play setup
-  let slideInterval = setInterval(nextSlide, 3000);
-
-  function resetInterval() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 3000);
-  }
-
-  // Event Listeners
-  nextBtn.addEventListener("click", () => {
-    nextSlide();
-    resetInterval();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    prevSlide();
-    resetInterval();
+  items.forEach((item, index) => {
+    item.addEventListener("click", () => switchAboutImage(index));
   });
 });
 
-// / * ==============
-// | why choose us section |
-// =========================
+
+
+/* ===============================
+   2. WHY CHOOSE US
+================================ */
 document.addEventListener("DOMContentLoaded", function () {
-  // Configuration for the Intersection Observer
+
   const observerOptions = {
     root: null,
     rootMargin: "0px",
-    threshold: 0.2, // Trigger animation when 20% of section is visible
+    threshold: 0.2,
   };
 
-  // Create the observer
-  const observer = new IntersectionObserver((entries, observer) => {
+  const whyUsObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // 1. Animate the Center Image first
-        const center = entry.target.querySelector(".center-visual");
-        if (center) center.classList.add("visible");
+        // 1. Animate Center Visual
+        const center = entry.target.querySelector(".ip2026-center-visual");
+        if (center) center.classList.add("ip2026-visible");
 
-        // 2. Animate the surrounding items with a staggered delay
-        const items = entry.target.querySelectorAll(".feature-item");
+        // 2. Animate items with stagger
+        const items = entry.target.querySelectorAll(".ip2026-feature-item");
         items.forEach((item, index) => {
           setTimeout(() => {
-            item.classList.add("visible");
-          }, index * 200); // 200ms delay between each item
+            item.classList.add("ip2026-visible");
+          }, index * 200);
         });
 
-        // Stop observing after animation runs once
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  // Start observing the section
-  const section = document.querySelector(".why-us-section");
-  if (section) {
-    observer.observe(section);
-  }
-});
-/* ===============================
-   EXPANDING CARDS LOGIC (FLIP Animation)
-================================ */
-
-function toggleCard(card) {
-  // 1. Check if card is already active
-  const isActive = card.classList.contains("active");
-
-  // 2. If clicking an active card, close it
-  if (isActive) {
-    card.classList.remove("active");
-    document.body.style.overflow = "auto"; // Enable Scroll
-    return;
+  const whyUsSection = document.querySelector(".ip2026-why-us-section");
+  if (whyUsSection) {
+    whyUsObserver.observe(whyUsSection);
   }
 
-  // 3. If opening a new card...
+  /* ===============================
+     HERO SLIDER LOGIC
+  ================================ */
+  const sliderContainer = document.getElementById("ip2026-sliderContainer");
+  if (sliderContainer) {
+    const slides = document.querySelectorAll(".ip2026-hero-slide");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
 
-  // First, close any other open cards
-  document.querySelectorAll(".expand-card.active").forEach((c) => {
-    c.classList.remove("active");
-  });
+    let currentIndex = 0;
+    let isTransitioning = false;
+    const totalSlides = slides.length;
+    const lastRealIndex = totalSlides - 1;
 
-  // Get the initial position (First)
-  const rect = card.getBoundingClientRect();
-
-  // Add the active class to calculate final position (Last)
-  card.classList.add("active");
-  document.body.style.overflow = "hidden"; // Disable Scroll
-
-  // NOTE: In a pure FLIP animation, we would calculate the invert and play.
-  // However, for this specific CSS setup, adding the class triggers the
-  // fixed position transition defined in CSS.
-
-  // To make it smooth, we use a small timeout or a placeholder technique,
-  // but the CSS transition on '.card-inner' handles the growth visually.
-
-  // Optional: Add a simple animation to the content appearing
-  const content = card.querySelector(".full-desc");
-  content.style.opacity = "0";
-  setTimeout(() => {
-    content.style.opacity = "1";
-  }, 300);
-}
-
-/* ===============================
-   4. PORTFOLIO SLIDER (BIDIRECTIONAL LOOP)
-================================ */
-const track = document.getElementById("sliderTrack");
-const originalSlides = Array.from(
-  document.querySelectorAll(".portfolio-slide"),
-);
-const pNumbers = document.querySelectorAll(".p-num");
-const progressFill = document.querySelector(".progress-fill");
-
-// CONFIG
-const animationSpeed = 3000;
-
-// STATE
-let currentIndex = 0;
-let portfolioInterval;
-let isTransitioning = false;
-const clonesCount = originalSlides.length;
-
-/**
- * HELPER: DYNAMIC DIMENSIONS
- * Calculates width and gap based on current CSS (handles media queries)
- */
-function getSliderMetrics() {
-  const firstSlide = document.querySelector(".portfolio-slide");
-  if (!firstSlide) return { width: 350, gap: 30 };
-
-  const style = window.getComputedStyle(track);
-  return {
-    width: firstSlide.offsetWidth,
-    gap: parseInt(style.gap) || 0,
-  };
-}
-
-function setupPortfolio() {
-  track.innerHTML = "";
-
-  // Prepend Clones
-  originalSlides.forEach((slide) => {
-    const clone = slide.cloneNode(true);
-    clone.classList.add("clone");
-    clone.classList.remove("active");
-    track.appendChild(clone);
-  });
-
-  // Add Originals
-  originalSlides.forEach((slide) => {
-    track.appendChild(slide);
-  });
-
-  // Append Clones
-  originalSlides.forEach((slide) => {
-    const clone = slide.cloneNode(true);
-    clone.classList.add("clone");
-    clone.classList.remove("active");
-    track.appendChild(clone);
-  });
-
-  currentIndex = clonesCount;
-  // Small timeout to ensure DOM is painted before initial positioning
-  setTimeout(() => updateTrackPosition(currentIndex, false), 50);
-}
-
-function updateTrackPosition(index, animate = true) {
-  const allSlides = document.querySelectorAll(".portfolio-slide");
-  const { width, gap } = getSliderMetrics();
-  const totalItemWidth = width + gap;
-
-  // A. Highlight Visuals
-  allSlides.forEach((s) => s.classList.remove("active"));
-  if (allSlides[index]) allSlides[index].classList.add("active");
-
-  // B. Map to Original Index
-  let realIndex = (index - clonesCount) % originalSlides.length;
-  if (realIndex < 0) realIndex += originalSlides.length;
-
-  // C. Update Pagination & Progress
-  pNumbers.forEach((n) => n.classList.remove("active"));
-  if (pNumbers[realIndex]) pNumbers[realIndex].classList.add("active");
-
-  if (progressFill) {
-    const percent = ((realIndex + 1) / originalSlides.length) * 100;
-    progressFill.style.width = `${percent}%`;
-  }
-
-  // D. DYNAMIC CENTER LOGIC
-  const containerWidth =
-    document.querySelector(".portfolio-slider").offsetWidth;
-  const centerPoint = containerWidth / 2;
-  const slideHalf = width / 2;
-
-  // The calculation that ensures the slide stays in the middle:
-  const offset = centerPoint - slideHalf - index * totalItemWidth;
-
-  track.style.transition = animate
-    ? "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
-    : "none";
-  track.style.transform = `translateX(${offset}px)`;
-  currentIndex = index;
-}
-
-function nextPortfolioSlide() {
-  if (isTransitioning) return;
-
-  currentIndex++;
-  updateTrackPosition(currentIndex, true);
-
-  const handleTransitionEnd = () => {
-    if (currentIndex >= clonesCount + originalSlides.length) {
-      currentIndex = clonesCount;
-      updateTrackPosition(currentIndex, false);
+    function updateSlider() {
+      sliderContainer.classList.remove("no-transition");
+      sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
-    isTransitioning = false;
-    track.removeEventListener("transitionend", handleTransitionEnd);
-  };
 
-  isTransitioning = true;
-  track.addEventListener("transitionend", handleTransitionEnd);
-}
+    function nextSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex++;
+      updateSlider();
+    }
 
-// AUTO PLAY
-function startPortfolioLoop() {
-  clearInterval(portfolioInterval);
-  portfolioInterval = setInterval(nextPortfolioSlide, animationSpeed);
-}
+    function prevSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      if (currentIndex <= 0) {
+        sliderContainer.classList.add("no-transition");
+        currentIndex = lastRealIndex;
+        sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        setTimeout(() => {
+          sliderContainer.classList.remove("no-transition");
+          currentIndex--;
+          updateSlider();
+        }, 20);
+      } else {
+        currentIndex--;
+        updateSlider();
+      }
+    }
 
-// PAGINATION CLICK
-pNumbers.forEach((num, idx) => {
-  num.addEventListener("click", () => {
-    clearInterval(portfolioInterval);
-    currentIndex = clonesCount + idx;
-    updateTrackPosition(currentIndex, true);
-    startPortfolioLoop();
-  });
+    sliderContainer.addEventListener("transitionend", () => {
+      isTransitioning = false;
+      if (currentIndex === lastRealIndex) {
+        sliderContainer.classList.add("no-transition");
+        currentIndex = 0;
+        sliderContainer.style.transform = `translateX(0)`;
+      }
+    });
+
+    let slideInterval = setInterval(nextSlide, 3000);
+    nextBtn?.addEventListener("click", () => { nextSlide(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 3000); });
+    prevBtn?.addEventListener("click", () => { prevSlide(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 3000); });
+  }
 });
 
-// INITIALIZE
-if (track) {
-  setupPortfolio();
-  startPortfolioLoop();
-
-  // Recalculate everything on resize to keep it centered
-  window.addEventListener("resize", () => {
-    updateTrackPosition(currentIndex, false);
-  });
-}
-
-// service
+/* ===============================
+   2. Services Section Js CODE
+================================ */
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".service-card");
+  const cards = document.querySelectorAll(".ip2026-service-card");
 
   // 1. 3D Tilt Effect
   cards.forEach((card) => {
@@ -496,35 +342,184 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/*FOOTER LOGIC */
+/* ===============================
+   4. PORTFOLIO SLIDER (FIXED BIDIRECTIONAL)
+================================ */
+const ipTrack = document.getElementById("ip2026-sliderTrack");
+const ipOriginalSlides = Array.from(document.querySelectorAll(".ip2026-portfolio-slide"));
+const ipPNumbers = document.querySelectorAll(".ip2026-p-num");
+const ipProgressFill = document.querySelector(".ip2026-progress-fill");
 
+const ipAnimationSpeed = 3000; // Slightly slower for better UX
+let ipCurrentIndex = 0;
+let ipPortfolioInterval;
+let ipIsTransitioning = false;
+const ipClonesCount = ipOriginalSlides.length;
+
+function getIpSliderMetrics() {
+    const firstSlide = ipTrack ? ipTrack.querySelector(".ip2026-portfolio-slide") : null;
+    if (!firstSlide) return { width: 350, gap: 30 };
+    const style = window.getComputedStyle(ipTrack);
+    return {
+        width: firstSlide.offsetWidth,
+        gap: parseInt(style.gap) || 0,
+    };
+}
+
+function setupIpPortfolio() {
+    if (!ipTrack || ipOriginalSlides.length === 0) return;
+    
+    // Clear track and re-append clones for a true infinite loop
+    ipTrack.innerHTML = "";
+
+    // Set 1: Prepend Clones
+    ipOriginalSlides.forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.classList.add("ip2026-clone");
+        ipTrack.appendChild(clone);
+    });
+
+    // Set 2: Original Slides
+    ipOriginalSlides.forEach((slide) => {
+        ipTrack.appendChild(slide);
+    });
+
+    // Set 3: Append Clones
+    ipOriginalSlides.forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.classList.add("ip2026-clone");
+        ipTrack.appendChild(clone);
+    });
+
+    // Position at the start of original slides
+    ipCurrentIndex = ipClonesCount;
+    updateIpTrackPosition(ipCurrentIndex, false);
+}
+
+function updateIpTrackPosition(index, animate = true) {
+    const allSlides = ipTrack.querySelectorAll(".ip2026-portfolio-slide");
+    const { width, gap } = getIpSliderMetrics();
+    const totalItemWidth = width + gap;
+
+    // Update Visual Active States
+    allSlides.forEach((s, i) => {
+        s.classList.toggle("active", i === index);
+    });
+
+    // Calculate Real Index (0 to original length - 1)
+    let realIndex = (index - ipClonesCount) % ipOriginalSlides.length;
+    if (realIndex < 0) realIndex += ipOriginalSlides.length;
+
+    // Update Numbers & Progress
+    ipPNumbers.forEach((n, i) => {
+        n.classList.toggle("active", i === realIndex);
+    });
+
+    if (ipProgressFill) {
+        const percent = ((realIndex + 1) / ipOriginalSlides.length) * 100;
+        ipProgressFill.style.width = `${percent}%`;
+    }
+
+    // Centering Logic
+    const container = document.querySelector(".ip2026-portfolio-slider");
+    if (!container) return;
+    
+    const containerWidth = container.offsetWidth;
+    const centerPoint = containerWidth / 2;
+    const offset = centerPoint - (width / 2) - (index * totalItemWidth);
+
+    ipTrack.style.transition = animate ? "transform 0.7s cubic-bezier(0.65, 0, 0.35, 1)" : "none";
+    ipTrack.style.transform = `translateX(${offset}px)`;
+    ipCurrentIndex = index;
+}
+
+function nextIpPortfolioSlide() {
+    if (ipIsTransitioning) return;
+    ipIsTransitioning = true;
+
+    ipCurrentIndex++;
+    updateIpTrackPosition(ipCurrentIndex, true);
+
+    ipTrack.addEventListener("transitionend", function handleEnd() {
+        // Instant Jump logic for seamless loop
+        if (ipCurrentIndex >= ipClonesCount + ipOriginalSlides.length) {
+            ipCurrentIndex = ipClonesCount;
+            updateIpTrackPosition(ipCurrentIndex, false);
+        } else if (ipCurrentIndex < ipClonesCount) {
+            // Support for previous if added later
+            ipCurrentIndex = ipClonesCount + ipOriginalSlides.length - 1;
+            updateIpTrackPosition(ipCurrentIndex, false);
+        }
+        ipIsTransitioning = false;
+        ipTrack.removeEventListener("transitionend", handleEnd);
+    }, { once: true });
+}
+
+function startIpPortfolioLoop() {
+    stopIpPortfolioLoop();
+    ipPortfolioInterval = setInterval(nextIpPortfolioSlide, ipAnimationSpeed);
+}
+
+function stopIpPortfolioLoop() {
+    clearInterval(ipPortfolioInterval);
+}
+
+// Event Listeners
+ipPNumbers.forEach((num, idx) => {
+    num.addEventListener("click", () => {
+        stopIpPortfolioLoop();
+        ipCurrentIndex = ipClonesCount + idx;
+        updateIpTrackPosition(ipCurrentIndex, true);
+        startIpPortfolioLoop();
+    });
+});
+
+if (ipTrack) {
+    setupIpPortfolio();
+    startIpPortfolioLoop();
+    
+    // Pause on hover
+    ipTrack.addEventListener("mouseenter", stopIpPortfolioLoop);
+    ipTrack.addEventListener("mouseleave", startIpPortfolioLoop);
+
+    window.addEventListener("resize", () => {
+        updateIpTrackPosition(ipCurrentIndex, false);
+    });
+}
+
+
+
+
+
+/*FOOTER LOGIC */
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Dynamic Year
-  const yearSpan = document.getElementById("year");
+  // 1. Dynamic Year Update
+  const yearSpan = document.getElementById("ip2026-year");
   if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // 2. Scroll Reveal Animation Logic
-  const revealElements = document.querySelectorAll(".reveal");
+  // 2. Footer Reveal Logic
+  const footerSections = document.querySelectorAll(".ip2026-f-reveal");
 
-  const revealOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.9; // Trigger when 90% in view
+  const revealFooter = () => {
+    const triggerPoint = window.innerHeight * 0.92;
 
-    revealElements.forEach((el, index) => {
-      const elTop = el.getBoundingClientRect().top;
+    footerSections.forEach((section, index) => {
+      const sectionTop = section.getBoundingClientRect().top;
 
-      if (elTop < triggerBottom) {
-        // Add a small delay for each column to create a "wave" effect
+      if (sectionTop < triggerPoint) {
+        // Stagger the columns by 150ms each
         setTimeout(() => {
-          el.classList.add("active");
-        }, index * 150); 
+          section.classList.add("ip2026-f-active");
+        }, index * 150);
       }
     });
   };
 
-  // Initial check on load and on every scroll
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Run once in case it's already in view
+  // Run on scroll and initial load
+  window.addEventListener("scroll", revealFooter);
+  revealFooter(); 
 });
+
 
 // ====================
 // Register and Login
@@ -586,60 +581,4 @@ document.getElementById("auth-overlay").addEventListener("click", function (e) {
   }
 });
 
-const initSliders = () => {
-  const containers = document.querySelectorAll(".comparison-container");
 
-  containers.forEach((container) => {
-    const slider = container.querySelector(".slider");
-    const overlay = container.querySelector(".img-overlay");
-    const button = container.querySelector(".slider-button");
-    const beforeImg = container.querySelector(".before-img");
-
-    const updateSlider = () => {
-      const value = slider.value; 
-
-      // Move the "wall" from left to right
-      overlay.style.width = `${value}%`;
-      button.style.left = `${value}%`;
-
-      // IMPORTANT: Keep the blurred image fixed so it doesn't slide
-      beforeImg.style.width = `${container.offsetWidth}px`;
-    };
-
-    slider.addEventListener("input", updateSlider);
-
-    // Initial sync
-    updateSlider();
-    window.addEventListener("resize", updateSlider);
-  });
-};
-
-document.addEventListener("DOMContentLoaded", initSliders);
-
-/* ===============================
-   ABOUT SECTION IMAGE SWITCH
-================================ */
-
-function switchAboutImage(index) {
-  const items = document.querySelectorAll(".best-item");
-  const images = document.querySelectorAll(".about-img");
-
-  if (!items.length || !images.length) return;
-
-  // Remove active states
-  items.forEach((item) => item.classList.remove("active"));
-  images.forEach((img) => img.classList.remove("active"));
-
-  // Add active state
-  if (items[index]) items[index].classList.add("active");
-  if (images[index]) images[index].classList.add("active");
-}
-
-/* Optional: Mobile tap support (recommended) */
-document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".best-item");
-
-  items.forEach((item, index) => {
-    item.addEventListener("click", () => switchAboutImage(index));
-  });
-});

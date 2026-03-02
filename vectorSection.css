@@ -1,0 +1,208 @@
+/* ==========================================================================
+   VECTOR SECTION STYLES
+   ========================================================================== */
+
+#ip2026-vectorSection {
+  padding: var(--container-padding);
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+/* Header Styling */
+.ip2026-vectorHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.ip2026-vectorHeader h2 {
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(45deg, var(--text-color), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.ip2026-vectorHeader p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  max-width: 600px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Comparison Row - Responsive Flex */
+.ip2026-comparison-row {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on mobile */
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+/* Container & Base Image */
+.ip2026-comparison-container {
+  position: relative;
+  flex: 1 1 320px; /* Grows but stays at least 320px */
+  max-width: 450px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  background: #f4f4f4;
+}
+
+.ip2026-after-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The Clipping Overlay (Before) */
+.ip2026-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%; 
+  height: 100%;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  z-index: 2;
+  transition: border-color 0.3s;
+}
+
+.ip2026-before-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 450px; /* Set to the max-width of container for alignment */
+  max-width: none; /* Prevents image from shrinking with the overlay */
+  filter: blur(1.5px) contrast(0.9) saturate(0.5);
+  object-fit: cover;
+}
+
+/* Floating Labels */
+.ip2026-label {
+  position: absolute;
+  bottom: 20px;
+  padding: 6px 12px;
+  background: var(--text-color);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.ip2026-label-before { left: 15px; }
+.ip2026-label-after { right: 15px; }
+
+/* The Actual Functional Slider (Input) */
+.ip2026-slider {
+  position: absolute;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 10;
+  cursor: ew-resize;
+  margin: 0;
+  outline: none;
+  top: 0;
+  left: 0;
+}
+
+.ip2026-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 40px;
+  height: 1000px; /* Invisible tall thumb for easy dragging */
+  background: transparent;
+}
+
+/* The Visual Slider Button */
+.ip2026-slider-button {
+  position: absolute;
+  top: 80%; /* Centered vertically for better mobile UX */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: var(--text-hover);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--boxShadow-color);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ip2026-slider-button::before {
+  content: "‹ ›";
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 992px) {
+  .ip2026-comparison-row {
+    gap: 24px;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 40px 20px;
+  }
+
+  .ip2026-comparison-container {
+    flex: 1 1 100%; /* Take full width */
+    max-width: 500px; /* Slightly wider on mobile if needed */
+  }
+
+  /* Ensure the hidden image width stays consistent on mobile */
+  .ip2026-before-img {
+    width: 100vw; 
+    max-width: 500px;
+  }
+  
+  .ip2026-slider-button {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Smaller Mobile Devices */
+@media (max-width: 480px) {
+  .ip2026-vectorHeader h2 {
+    font-size: 1.8rem;
+  }
+  
+  .ip2026-label {
+    font-size: 0.6rem;
+    bottom: 15px;
+  }
+}

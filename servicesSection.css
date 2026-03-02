@@ -1,0 +1,229 @@
+
+/* =========================================
+    Services section 0. Imports & Setup
+   ========================================= */
+
+/* =========================================
+   1. Main Section Layout
+   ========================================= */
+.ip2026-core-services {
+  position: relative;
+  background: var(--bg-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  padding: var(--container-padding);
+  width: 100%;
+}
+
+.ip2026-services-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+/* =========================================
+   2. Celestial Background Blobs (Animated)
+   ========================================= */
+.ip2026-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+  opacity: 0.6;
+  animation: drift 20s infinite alternate ease-in-out;
+}
+
+.ip2026-blob-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--text-color);
+  opacity: 0.4;
+  top: -10%;
+  left: -10%;
+}
+
+.ip2026-blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--text-hover);
+  bottom: -10%;
+  right: -5%;
+  animation-delay: -5s;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(30px, 50px) scale(1.1);
+  }
+}
+/* =========================================
+   4. Grid & Card Architecture
+   ========================================= */
+.ip2026-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 1rem;
+}
+
+.ip2026-service-card {
+  position: relative;
+  border-radius: 24px;
+  /* Glassmorphism Core */
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px -10px var(--boxShadow-color);
+
+  /* Layout */
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+  transition:
+    transform 0.1s ease-out,
+    box-shadow 0.4s ease; /* Fast transform for JS tilt */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover State (Non-JS Fallback & Shadow) */
+.ip2026-service-card:hover {
+  box-shadow: 0 25px 50px -12px var(--boxShadow-color);
+  border-color: var(--text-primary);
+}
+
+/* --- Watermark Number --- */
+.ip2026-service-card::before {
+  content: attr(data-step);
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  font-size: 6rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(80, 52, 127, 0.08);
+  font-family: sans-serif;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.ip2026-service-card:hover::before {
+  -webkit-text-stroke: 2px rgba(60, 155, 189, 0.15);
+  transform: translateY(10px);
+}
+
+/* --- Inner Content --- */
+.ip2026-card-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ip2026-icon-box {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s var(--ease-elastic);
+}
+
+.ip2026-service-card:hover .ip2026-icon-box {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.ip2026-service-card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+.ip2026-service-card p {
+  font-size: 1rem;
+  color: #6a6a8a;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+/* --- Button Styling --- */
+.ip2026-btn-text {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.ip2026-btn-text::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--text-primary);
+  transition: width 0.3s ease;
+}
+
+.ip2026-arr {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.ip2026-service-card:hover .ip2026-btn-text {
+  color: var(--text-primary);
+}
+
+.ip2026-service-card:hover .ip2026-btn-text::after {
+  width: 100%;
+}
+
+.ip2026-service-card:hover .ip2026-arr {
+  transform: translateX(5px) translateY(-5px);
+}
+
+/* =====================================
+   MOBILE RESPONSIVE (<= 768px)
+===================================== */
+@media (max-width: 768px) {
+
+ /* ---------- SERVICES SECTION ---------- */
+  .ip2026-services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ip2026-service-card {
+    padding: 2rem 1.8rem;
+  }
+}
+
+/* =====================================
+   TABLET RESPONSIVE (768px – 1024px)
+===================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* ---------- SERVICES SECTION ---------- */
+  .ip2026-services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 24px;
+  }
+  .ip2026-service-card {
+    padding: 2.5rem 2rem;
+  }
+
+}
