@@ -76,6 +76,52 @@ body {
 }
 
 /* ===============================
+   Buttons css
+================================ */
+.ip2026-linkbuttons{
+  width: 100%;
+  display: flex;
+}
+
+/* Button */
+.ip2026-linkbuttons a{
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 14px;
+
+  color: var(--background-color);
+  background: linear-gradient(135deg, var(--text-color), var(--text-hover));
+
+  box-shadow: 0 10px 25px var(--boxShadow-color);
+
+  transition: all 0.35s ease;
+  letter-spacing: 0.5px;
+}
+
+/* Hover */
+.ip2026-linkbuttons a:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px var(--boxShadow-color);
+
+  background: linear-gradient(135deg, var(--text-hover), var(--text-color));
+}
+
+.ip2026-linkbuttons a::after{
+  content: " →";
+  font-size: 1.25rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.ip2026-linkbuttons a:hover::after{
+  transform: translateX(6px);
+}
+
+/* ===============================
    UNIFIED SECTION HEADER (SERVICES + WHY US)
 ================================ */
 

@@ -81,6 +81,59 @@
   display: none; /* Hide duplicate button on desktop */
 }
 
+
+/* ===============================
+   Drop down menu
+================================ */
+
+.ip2026_dropdown {
+  position: relative;
+}
+
+.ip2026_services_toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ip2026_dropdown_menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+
+  background: var(--bg-gradient);
+  border-radius: 10px;
+  padding: 12px 0;
+  width: 240px;
+  list-style: none;
+  box-shadow: 0 10px 25px var(--boxShadow-color);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: all 0.3s ease;
+}
+
+/* Show dropdown */
+
+.ip2026_dropdown:hover .ip2026_dropdown_menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.ip2026_dropdown_menu li a{
+  display:block;
+  padding:10px 20px;
+  color:var(--text-color);
+  font-size:15px;
+}
+
+.ip2026_dropdown_menu li a:hover{
+  background: var(--bg-gradient);
+}
+
 /* ===============================
    ACTION BUTTONS
 ================================ */
@@ -358,6 +411,10 @@
   margin: 8px 0;
 }
 
+.ip2026-mobile_btn{
+  display: none;
+}
+
 
 /* Responsive Code For Header Part */
 
@@ -417,6 +474,26 @@
     flex-direction: column;
     gap: 32px;
   }
+  
+  /* DROP DOWN MENU */
+  .ip2026_dropdown_menu{
+  position:static;
+  width:100%;
+  box-shadow:none;
+  padding-left:10px;
+
+  opacity:1;
+  visibility:visible;
+  transform:none;
+
+  display:block;
+}
+
+
+
+.ip2026_dropdown_menu li a{
+  font-size:18px;
+}
 
     /* ---------- AUTH POPUP ---------- */
   .ip2026-auth-card {

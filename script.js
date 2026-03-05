@@ -1,6 +1,7 @@
 /* ===============================
    1. GLOBAL PAGE LOAD
 ================================ */
+
 /* Optimized Navbar Logic */
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".ip2026_hamburger");
@@ -50,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeMenu();
   });
 });
+
+
 
 
 
