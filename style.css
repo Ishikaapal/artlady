@@ -121,6 +121,13 @@ body {
   transform: translateX(6px);
 }
 
+.ip2026-portfolioButton{
+  display: flex; 
+  width: 100%; 
+  justify-content: center;
+  margin-top: 32px;
+}
+
 /* ===============================
    UNIFIED SECTION HEADER (SERVICES + WHY US)
 ================================ */
